@@ -1,3 +1,2 @@
-﻿#Link a Heroku
-Usuario: ftrejo@uc.cl	
-clave: cgzvm283
+﻿Link a Heroku
+https://dry-citadel-07931.herokuapp.com/
