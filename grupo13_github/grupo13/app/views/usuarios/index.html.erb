@@ -1,0 +1,29 @@
+<h1>Usuario</h1>
+
+<table>
+    <thead>
+        <th>Nombre</th>
+        <th>Mail</th>
+        <th>Direccion</th>
+        <th>Perfil</th>
+        <th>Restaurantes Favoritos</th>
+        <th>Pedidos</th>
+    </thead>
+    <% @usuarios.each do |usuario| %>
+    <tr>
+        <td><% usuario.name %></td>
+        <td><% usuario.mail %></td>
+        <td><% usuario.name %></td>
+        <td><% usuario.adress %></td>
+        <td><% usuario.profile %></td>
+        <td><% usuario.restaurantes_favoritos %></td>
+        <td><% usuario.registro_pedidos %></td>
+
+
+
+
+    </tr>
+    <% end %>
+
+</table>
+
