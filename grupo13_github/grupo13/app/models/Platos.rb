@@ -1,2 +1,0 @@
-class Plato < ApplicationRecord
-end
