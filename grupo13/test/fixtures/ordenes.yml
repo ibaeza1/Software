@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  platos_pedidos_en_la_orden: MyString
+  precio_final_a_pagar: 9.99
+  medio_de_pago: MyString
+  direccion_de_envio: MyString
+  hora_estimada_de_entrega: 2019-09-30 02:19:53
+  estado_del_pedido: MyString
+  notas: MyText
+
+two:
+  platos_pedidos_en_la_orden: MyString
+  precio_final_a_pagar: 9.99
+  medio_de_pago: MyString
+  direccion_de_envio: MyString
+  hora_estimada_de_entrega: 2019-09-30 02:19:53
+  estado_del_pedido: MyString
+  notas: MyText

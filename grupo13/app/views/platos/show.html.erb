@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nombre:</strong>
+  <%= @plato.nombre %>
+</p>
+
+<p>
+  <strong>Precio:</strong>
+  <%= @plato.precio %>
+</p>
+
+<p>
+  <strong>Descripcion:</strong>
+  <%= @plato.descripcion %>
+</p>
+
+<p>
+  <strong>Cantidad de personas sugeridas:</strong>
+  <%= @plato.cantidad_de_personas_sugeridas %>
+</p>
+
+<p>
+  <strong>Valoracion:</strong>
+  <%= @plato.valoracion %>
+</p>
+
+<%= link_to 'Edit', edit_plato_path(@plato) %> |
+<%= link_to 'Back', platos_path %>

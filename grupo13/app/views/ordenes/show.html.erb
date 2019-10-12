@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Platos pedidos en la orden:</strong>
+  <%= @ordene.platos_pedidos_en_la_orden %>
+</p>
+
+<p>
+  <strong>Precio final a pagar:</strong>
+  <%= @ordene.precio_final_a_pagar %>
+</p>
+
+<p>
+  <strong>Medio de pago:</strong>
+  <%= @ordene.medio_de_pago %>
+</p>
+
+<p>
+  <strong>Direccion de envio:</strong>
+  <%= @ordene.direccion_de_envio %>
+</p>
+
+<p>
+  <strong>Hora estimada de entrega:</strong>
+  <%= @ordene.hora_estimada_de_entrega %>
+</p>
+
+<p>
+  <strong>Estado del pedido:</strong>
+  <%= @ordene.estado_del_pedido %>
+</p>
+
+<p>
+  <strong>Notas:</strong>
+  <%= @ordene.notas %>
+</p>
+
+<%= link_to 'Edit', edit_ordene_path(@ordene) %> |
+<%= link_to 'Back', ordenes_path %>
