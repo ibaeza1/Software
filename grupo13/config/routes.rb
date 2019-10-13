@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get '/restaurantes/new', to: 'restaurante/#index'
   get '/restaurantes/:id', to: 'restaurantes#show'
   get '/restaurantes/:id', to: 'restaurantes#edit'
+  post '/comentarios/new', to: 'comentarios#create'
   devise_for :users
   get 'welcome/index'
   root 'welcome#index'
