@@ -1,13 +1,12 @@
 <p id="notice"><%= notice %></p>
 
-<%= link_to 'Edit', edit_restaurante_path(@restaurantes) %> |
+<h3> Informacion </h3>
+<p>Nombre: <%= @restaurantes.titulo %></p>
+<p>Direccion: <%= @restaurantes.direccion %></p>
+<p>Telefono: <%= @restaurantes.telefono %></p>
+<p>Valoracion: <%= @restaurantes.valoracion %></p>
+<p>Correo: <%= @restaurantes.correo %></p>
+<p>Url: <%= @restaurantes.url %></p>
+
 <%= link_to 'Back', restaurantes_path %>
-<%= form_with(model: @restaurante, local: true) do |form| %>
-  <div class="field">
-    <%= form.label :titulo %>
-    <%= form.text_field :titulo %>
-  </div>
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+

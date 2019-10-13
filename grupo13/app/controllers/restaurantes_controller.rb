@@ -10,6 +10,7 @@ class RestaurantesController < ApplicationController
   # GET /restaurantes/1
   # GET /restaurantes/1.json
   def show
+    puts 'DALE CARAJO'
     @restaurantes = Restaurante.find(params[:id])
   end
 
