@@ -8,7 +8,11 @@
 <p>Correo: <%= @restaurantes.correo %></p>
 <p>Url: <%= @restaurantes.url %></p>
 
+<%= link_to 'Ver Platos', platos_path %>
+<b>
+<%= link_to 'Crear Orden', ordenes_path %>
+<b>
 <%= link_to 'Ver Comentarios', comentarios_path %>
-
+<b>
 <%= link_to 'Back', restaurantes_path %>
 
