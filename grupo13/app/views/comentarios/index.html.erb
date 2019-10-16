@@ -23,8 +23,10 @@
         <td><%= comentario.contenido %></td>
         <td><%= comentario.puntaje_de_reputacion %></td>
         <td><%= link_to 'Show', comentario %></td>
-        <td><%= link_to 'Edit', edit_comentario_path(comentario) %></td>
-        <td><%= link_to 'Destroy', comentario, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+	<% if current_user.try(:admin?) %> 
+        	<td><%= link_to 'Edit', edit_comentario_path(comentario) %></td>
+        	<td><%= link_to 'Destroy', comentario, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+	<% end %>
       </tr>
     <% end %>
   </tbody>
