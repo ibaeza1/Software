@@ -1,0 +1,456 @@
+  [1m[35m (111.8ms)[0m  [1m[35mDROP DATABASE IF EXISTS "grupo13_test"[0m
+  [1m[35m (627.0ms)[0m  [1m[35mCREATE DATABASE "grupo13_test" ENCODING = 'unicode'[0m
+  [1m[35mSQL (1.2ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "comentarios" CASCADE[0m
+  [1m[35m (14.0ms)[0m  [1m[35mCREATE TABLE "comentarios" ("id" bigserial primary key, "restaurante_o_plato" character varying, "usuario" character varying, "fecha_y_hora" timestamp, "contenido" text, "puntaje_de_reputacion" decimal, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "ordenes" CASCADE[0m
+  [1m[35m (10.5ms)[0m  [1m[35mCREATE TABLE "ordenes" ("id" bigserial primary key, "platos_pedidos_en_la_orden" character varying, "precio_final_a_pagar" decimal, "medio_de_pago" character varying, "direccion_de_envio" character varying, "hora_estimada_de_entrega" time, "estado_del_pedido" character varying, "notas" text, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "platos" CASCADE[0m
+  [1m[35m (8.3ms)[0m  [1m[35mCREATE TABLE "platos" ("id" bigserial primary key, "nombre" character varying, "precio" decimal, "descripcion" text, "cantidad_de_personas_sugeridas" integer, "valoracion" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "restaurantes" CASCADE[0m
+  [1m[35m (8.3ms)[0m  [1m[35mCREATE TABLE "restaurantes" ("id" bigserial primary key, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, "titulo" text, "correo" character varying, "direccion" character varying, "valoracion" integer, "telefono" character varying, "url" character varying)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "users" CASCADE[0m
+  [1m[35m (10.4ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "email" character varying DEFAULT '' NOT NULL, "encrypted_password" character varying DEFAULT '' NOT NULL, "reset_password_token" character varying, "reset_password_sent_at" timestamp, "remember_created_at" timestamp, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, "admin" boolean DEFAULT FALSE)[0m
+  [1m[35m (4.7ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_users_on_email" ON "users"  ("email")[0m
+  [1m[35m (4.7ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_users_on_reset_password_token" ON "users"  ("reset_password_token")[0m
+  [1m[35m (8.0ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.8ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20191016183452)[0m
+  [1m[35m (1.9ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20190929165820),
+(20190929002904),
+(20190929114759),
+(20190930021953),
+(20190930021848),
+(20190930022059);
+
+[0m
+  [1m[35m (9.3ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.5ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "test"], ["created_at", "2019-10-18 20:57:21.341793"], ["updated_at", "2019-10-18 20:57:21.341793"]]
+  [1m[35m (1.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (4.8ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.4ms)[0m  [1m[35mALTER TABLE "comentarios" DISABLE TRIGGER ALL;ALTER TABLE "ordenes" DISABLE TRIGGER ALL;ALTER TABLE "platos" DISABLE TRIGGER ALL;ALTER TABLE "restaurantes" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixtures Load (2.6ms)[0m  [1m[31mDELETE FROM "users";
+DELETE FROM "comentarios";
+DELETE FROM "ordenes";
+DELETE FROM "restaurantes";
+DELETE FROM "platos";
+INSERT INTO "users" ("id", "email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at", "admin") VALUES (980190962, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2019-10-18 20:57:21.426901', '2019-10-18 20:57:21.426901', DEFAULT), (298486374, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2019-10-18 20:57:21.426901', '2019-10-18 20:57:21.426901', DEFAULT);
+INSERT INTO "comentarios" ("id", "restaurante_o_plato", "usuario", "fecha_y_hora", "contenido", "puntaje_de_reputacion", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyString', '2019-09-30 02:18:48', 'MyText', 9.99, '2019-10-18 20:57:21.439710', '2019-10-18 20:57:21.439710'), (298486374, 'MyString', 'MyString', '2019-09-30 02:18:48', 'MyText', 9.99, '2019-10-18 20:57:21.439710', '2019-10-18 20:57:21.439710');
+INSERT INTO "ordenes" ("id", "platos_pedidos_en_la_orden", "precio_final_a_pagar", "medio_de_pago", "direccion_de_envio", "hora_estimada_de_entrega", "estado_del_pedido", "notas", "created_at", "updated_at") VALUES (980190962, 'MyString', 9.99, 'MyString', 'MyString', '02:19:53', 'MyString', 'MyText', '2019-10-18 20:57:21.450647', '2019-10-18 20:57:21.450647'), (298486374, 'MyString', 9.99, 'MyString', 'MyString', '02:19:53', 'MyString', 'MyText', '2019-10-18 20:57:21.450647', '2019-10-18 20:57:21.450647');
+INSERT INTO "restaurantes" ("id", "created_at", "updated_at", "titulo", "correo", "direccion", "valoracion", "telefono", "url") VALUES (980190962, '2019-10-18 20:57:21.462573', '2019-10-18 20:57:21.462573', DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT), (298486374, '2019-10-18 20:57:21.462573', '2019-10-18 20:57:21.462573', DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO "platos" ("id", "nombre", "precio", "descripcion", "cantidad_de_personas_sugeridas", "valoracion", "created_at", "updated_at") VALUES (980190962, 'MyString', 9.99, 'MyText', 1, 1, '2019-10-18 20:57:21.472380', '2019-10-18 20:57:21.472380'), (298486374, 'MyString', 9.99, 'MyText', 1, 1, '2019-10-18 20:57:21.472380', '2019-10-18 20:57:21.472380')[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (5.8ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (5.7ms)[0m  [1m[35mALTER TABLE "comentarios" DISABLE TRIGGER ALL;ALTER TABLE "ordenes" DISABLE TRIGGER ALL;ALTER TABLE "platos" DISABLE TRIGGER ALL;ALTER TABLE "restaurantes" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixtures Load (0.8ms)[0m  [1m[31mDELETE FROM "users";
+DELETE FROM "comentarios";
+DELETE FROM "ordenes";
+DELETE FROM "restaurantes";
+DELETE FROM "platos";
+INSERT INTO "users" ("id", "email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at", "admin") VALUES (980190962, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2019-10-18 20:57:21.696582', '2019-10-18 20:57:21.696582', DEFAULT), (298486374, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2019-10-18 20:57:21.696582', '2019-10-18 20:57:21.696582', DEFAULT);
+INSERT INTO "comentarios" ("id", "restaurante_o_plato", "usuario", "fecha_y_hora", "contenido", "puntaje_de_reputacion", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyString', '2019-09-30 02:18:48', 'MyText', 9.99, '2019-10-18 20:57:21.698416', '2019-10-18 20:57:21.698416'), (298486374, 'MyString', 'MyString', '2019-09-30 02:18:48', 'MyText', 9.99, '2019-10-18 20:57:21.698416', '2019-10-18 20:57:21.698416');
+INSERT INTO "ordenes" ("id", "platos_pedidos_en_la_orden", "precio_final_a_pagar", "medio_de_pago", "direccion_de_envio", "hora_estimada_de_entrega", "estado_del_pedido", "notas", "created_at", "updated_at") VALUES (980190962, 'MyString', 9.99, 'MyString', 'MyString', '02:19:53', 'MyString', 'MyText', '2019-10-18 20:57:21.699915', '2019-10-18 20:57:21.699915'), (298486374, 'MyString', 9.99, 'MyString', 'MyString', '02:19:53', 'MyString', 'MyText', '2019-10-18 20:57:21.699915', '2019-10-18 20:57:21.699915');
+INSERT INTO "restaurantes" ("id", "created_at", "updated_at", "titulo", "correo", "direccion", "valoracion", "telefono", "url") VALUES (980190962, '2019-10-18 20:57:21.701409', '2019-10-18 20:57:21.701409', DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT), (298486374, '2019-10-18 20:57:21.701409', '2019-10-18 20:57:21.701409', DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO "platos" ("id", "nombre", "precio", "descripcion", "cantidad_de_personas_sugeridas", "valoracion", "created_at", "updated_at") VALUES (980190962, 'MyString', 9.99, 'MyText', 1, 1, '2019-10-18 20:57:21.702969', '2019-10-18 20:57:21.702969'), (298486374, 'MyString', 9.99, 'MyText', 1, 1, '2019-10-18 20:57:21.702969', '2019-10-18 20:57:21.702969')[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (14.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "comentarios" DISABLE TRIGGER ALL;ALTER TABLE "ordenes" DISABLE TRIGGER ALL;ALTER TABLE "platos" DISABLE TRIGGER ALL;ALTER TABLE "restaurantes" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixtures Load (0.7ms)[0m  [1m[31mDELETE FROM "users";
+DELETE FROM "comentarios";
+DELETE FROM "ordenes";
+DELETE FROM "restaurantes";
+DELETE FROM "platos";
+INSERT INTO "users" ("id", "email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at", "admin") VALUES (980190962, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2019-10-18 20:57:21.734929', '2019-10-18 20:57:21.734929', DEFAULT), (298486374, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2019-10-18 20:57:21.734929', '2019-10-18 20:57:21.734929', DEFAULT);
+INSERT INTO "comentarios" ("id", "restaurante_o_plato", "usuario", "fecha_y_hora", "contenido", "puntaje_de_reputacion", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyString', '2019-09-30 02:18:48', 'MyText', 9.99, '2019-10-18 20:57:21.736628', '2019-10-18 20:57:21.736628'), (298486374, 'MyString', 'MyString', '2019-09-30 02:18:48', 'MyText', 9.99, '2019-10-18 20:57:21.736628', '2019-10-18 20:57:21.736628');
+INSERT INTO "ordenes" ("id", "platos_pedidos_en_la_orden", "precio_final_a_pagar", "medio_de_pago", "direccion_de_envio", "hora_estimada_de_entrega", "estado_del_pedido", "notas", "created_at", "updated_at") VALUES (980190962, 'MyString', 9.99, 'MyString', 'MyString', '02:19:53', 'MyString', 'MyText', '2019-10-18 20:57:21.738129', '2019-10-18 20:57:21.738129'), (298486374, 'MyString', 9.99, 'MyString', 'MyString', '02:19:53', 'MyString', 'MyText', '2019-10-18 20:57:21.738129', '2019-10-18 20:57:21.738129');
+INSERT INTO "restaurantes" ("id", "created_at", "updated_at", "titulo", "correo", "direccion", "valoracion", "telefono", "url") VALUES (980190962, '2019-10-18 20:57:21.739693', '2019-10-18 20:57:21.739693', DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT), (298486374, '2019-10-18 20:57:21.739693', '2019-10-18 20:57:21.739693', DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO "platos" ("id", "nombre", "precio", "descripcion", "cantidad_de_personas_sugeridas", "valoracion", "created_at", "updated_at") VALUES (980190962, 'MyString', 9.99, 'MyText', 1, 1, '2019-10-18 20:57:21.743562', '2019-10-18 20:57:21.743562'), (298486374, 'MyString', 9.99, 'MyText', 1, 1, '2019-10-18 20:57:21.743562', '2019-10-18 20:57:21.743562')[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "comentarios" DISABLE TRIGGER ALL;ALTER TABLE "ordenes" DISABLE TRIGGER ALL;ALTER TABLE "platos" DISABLE TRIGGER ALL;ALTER TABLE "restaurantes" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL[0m
+  [1m[35m (3.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixtures Load (1.1ms)[0m  [1m[31mDELETE FROM "users";
+DELETE FROM "comentarios";
+DELETE FROM "ordenes";
+DELETE FROM "restaurantes";
+DELETE FROM "platos";
+INSERT INTO "users" ("id", "email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at", "admin") VALUES (980190962, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2019-10-18 20:57:21.769153', '2019-10-18 20:57:21.769153', DEFAULT), (298486374, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2019-10-18 20:57:21.769153', '2019-10-18 20:57:21.769153', DEFAULT);
+INSERT INTO "comentarios" ("id", "restaurante_o_plato", "usuario", "fecha_y_hora", "contenido", "puntaje_de_reputacion", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyString', '2019-09-30 02:18:48', 'MyText', 9.99, '2019-10-18 20:57:21.774895', '2019-10-18 20:57:21.774895'), (298486374, 'MyString', 'MyString', '2019-09-30 02:18:48', 'MyText', 9.99, '2019-10-18 20:57:21.774895', '2019-10-18 20:57:21.774895');
+INSERT INTO "ordenes" ("id", "platos_pedidos_en_la_orden", "precio_final_a_pagar", "medio_de_pago", "direccion_de_envio", "hora_estimada_de_entrega", "estado_del_pedido", "notas", "created_at", "updated_at") VALUES (980190962, 'MyString', 9.99, 'MyString', 'MyString', '02:19:53', 'MyString', 'MyText', '2019-10-18 20:57:21.776477', '2019-10-18 20:57:21.776477'), (298486374, 'MyString', 9.99, 'MyString', 'MyString', '02:19:53', 'MyString', 'MyText', '2019-10-18 20:57:21.776477', '2019-10-18 20:57:21.776477');
+INSERT INTO "restaurantes" ("id", "created_at", "updated_at", "titulo", "correo", "direccion", "valoracion", "telefono", "url") VALUES (980190962, '2019-10-18 20:57:21.778088', '2019-10-18 20:57:21.778088', DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT), (298486374, '2019-10-18 20:57:21.778088', '2019-10-18 20:57:21.778088', DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO "platos" ("id", "nombre", "precio", "descripcion", "cantidad_de_personas_sugeridas", "valoracion", "created_at", "updated_at") VALUES (980190962, 'MyString', 9.99, 'MyText', 1, 1, '2019-10-18 20:57:21.779649', '2019-10-18 20:57:21.779649'), (298486374, 'MyString', 9.99, 'MyText', 1, 1, '2019-10-18 20:57:21.779649', '2019-10-18 20:57:21.779649')[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.7ms)[0m  [1m[35mALTER TABLE "comentarios" DISABLE TRIGGER ALL;ALTER TABLE "ordenes" DISABLE TRIGGER ALL;ALTER TABLE "platos" DISABLE TRIGGER ALL;ALTER TABLE "restaurantes" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixtures Load (0.8ms)[0m  [1m[31mDELETE FROM "users";
+DELETE FROM "comentarios";
+DELETE FROM "ordenes";
+DELETE FROM "restaurantes";
+DELETE FROM "platos";
+INSERT INTO "users" ("id", "email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at", "admin") VALUES (980190962, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2019-10-18 20:57:21.804919', '2019-10-18 20:57:21.804919', DEFAULT), (298486374, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2019-10-18 20:57:21.804919', '2019-10-18 20:57:21.804919', DEFAULT);
+INSERT INTO "comentarios" ("id", "restaurante_o_plato", "usuario", "fecha_y_hora", "contenido", "puntaje_de_reputacion", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyString', '2019-09-30 02:18:48', 'MyText', 9.99, '2019-10-18 20:57:21.810503', '2019-10-18 20:57:21.810503'), (298486374, 'MyString', 'MyString', '2019-09-30 02:18:48', 'MyText', 9.99, '2019-10-18 20:57:21.810503', '2019-10-18 20:57:21.810503');
+INSERT INTO "ordenes" ("id", "platos_pedidos_en_la_orden", "precio_final_a_pagar", "medio_de_pago", "direccion_de_envio", "hora_estimada_de_entrega", "estado_del_pedido", "notas", "created_at", "updated_at") VALUES (980190962, 'MyString', 9.99, 'MyString', 'MyString', '02:19:53', 'MyString', 'MyText', '2019-10-18 20:57:21.812143', '2019-10-18 20:57:21.812143'), (298486374, 'MyString', 9.99, 'MyString', 'MyString', '02:19:53', 'MyString', 'MyText', '2019-10-18 20:57:21.812143', '2019-10-18 20:57:21.812143');
+INSERT INTO "restaurantes" ("id", "created_at", "updated_at", "titulo", "correo", "direccion", "valoracion", "telefono", "url") VALUES (980190962, '2019-10-18 20:57:21.822912', '2019-10-18 20:57:21.822912', DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT), (298486374, '2019-10-18 20:57:21.822912', '2019-10-18 20:57:21.822912', DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO "platos" ("id", "nombre", "precio", "descripcion", "cantidad_de_personas_sugeridas", "valoracion", "created_at", "updated_at") VALUES (980190962, 'MyString', 9.99, 'MyText', 1, 1, '2019-10-18 20:57:21.826101', '2019-10-18 20:57:21.826101'), (298486374, 'MyString', 9.99, 'MyText', 1, 1, '2019-10-18 20:57:21.826101', '2019-10-18 20:57:21.826101')[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (1.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "comentarios" DISABLE TRIGGER ALL;ALTER TABLE "ordenes" DISABLE TRIGGER ALL;ALTER TABLE "platos" DISABLE TRIGGER ALL;ALTER TABLE "restaurantes" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL[0m
+  [1m[35m (2.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixtures Load (0.9ms)[0m  [1m[31mDELETE FROM "users";
+DELETE FROM "comentarios";
+DELETE FROM "ordenes";
+DELETE FROM "restaurantes";
+DELETE FROM "platos";
+INSERT INTO "users" ("id", "email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at", "admin") VALUES (980190962, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2019-10-18 20:57:21.858714', '2019-10-18 20:57:21.858714', DEFAULT), (298486374, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2019-10-18 20:57:21.858714', '2019-10-18 20:57:21.858714', DEFAULT);
+INSERT INTO "comentarios" ("id", "restaurante_o_plato", "usuario", "fecha_y_hora", "contenido", "puntaje_de_reputacion", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyString', '2019-09-30 02:18:48', 'MyText', 9.99, '2019-10-18 20:57:21.860453', '2019-10-18 20:57:21.860453'), (298486374, 'MyString', 'MyString', '2019-09-30 02:18:48', 'MyText', 9.99, '2019-10-18 20:57:21.860453', '2019-10-18 20:57:21.860453');
+INSERT INTO "ordenes" ("id", "platos_pedidos_en_la_orden", "precio_final_a_pagar", "medio_de_pago", "direccion_de_envio", "hora_estimada_de_entrega", "estado_del_pedido", "notas", "created_at", "updated_at") VALUES (980190962, 'MyString', 9.99, 'MyString', 'MyString', '02:19:53', 'MyString', 'MyText', '2019-10-18 20:57:21.862142', '2019-10-18 20:57:21.862142'), (298486374, 'MyString', 9.99, 'MyString', 'MyString', '02:19:53', 'MyString', 'MyText', '2019-10-18 20:57:21.862142', '2019-10-18 20:57:21.862142');
+INSERT INTO "restaurantes" ("id", "created_at", "updated_at", "titulo", "correo", "direccion", "valoracion", "telefono", "url") VALUES (980190962, '2019-10-18 20:57:21.864007', '2019-10-18 20:57:21.864007', DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT), (298486374, '2019-10-18 20:57:21.864007', '2019-10-18 20:57:21.864007', DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO "platos" ("id", "nombre", "precio", "descripcion", "cantidad_de_personas_sugeridas", "valoracion", "created_at", "updated_at") VALUES (980190962, 'MyString', 9.99, 'MyText', 1, 1, '2019-10-18 20:57:21.865825', '2019-10-18 20:57:21.865825'), (298486374, 'MyString', 9.99, 'MyText', 1, 1, '2019-10-18 20:57:21.865825', '2019-10-18 20:57:21.865825')[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (3.8ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.4ms)[0m  [1m[35mALTER TABLE "comentarios" DISABLE TRIGGER ALL;ALTER TABLE "ordenes" DISABLE TRIGGER ALL;ALTER TABLE "platos" DISABLE TRIGGER ALL;ALTER TABLE "restaurantes" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixtures Load (2.6ms)[0m  [1m[31mDELETE FROM "users";
+DELETE FROM "comentarios";
+DELETE FROM "ordenes";
+DELETE FROM "restaurantes";
+DELETE FROM "platos";
+INSERT INTO "users" ("id", "email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at", "admin") VALUES (980190962, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2019-10-18 20:57:21.896179', '2019-10-18 20:57:21.896179', DEFAULT), (298486374, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2019-10-18 20:57:21.896179', '2019-10-18 20:57:21.896179', DEFAULT);
+INSERT INTO "comentarios" ("id", "restaurante_o_plato", "usuario", "fecha_y_hora", "contenido", "puntaje_de_reputacion", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyString', '2019-09-30 02:18:48', 'MyText', 9.99, '2019-10-18 20:57:21.898802', '2019-10-18 20:57:21.898802'), (298486374, 'MyString', 'MyString', '2019-09-30 02:18:48', 'MyText', 9.99, '2019-10-18 20:57:21.898802', '2019-10-18 20:57:21.898802');
+INSERT INTO "ordenes" ("id", "platos_pedidos_en_la_orden", "precio_final_a_pagar", "medio_de_pago", "direccion_de_envio", "hora_estimada_de_entrega", "estado_del_pedido", "notas", "created_at", "updated_at") VALUES (980190962, 'MyString', 9.99, 'MyString', 'MyString', '02:19:53', 'MyString', 'MyText', '2019-10-18 20:57:21.906534', '2019-10-18 20:57:21.906534'), (298486374, 'MyString', 9.99, 'MyString', 'MyString', '02:19:53', 'MyString', 'MyText', '2019-10-18 20:57:21.906534', '2019-10-18 20:57:21.906534');
+INSERT INTO "restaurantes" ("id", "created_at", "updated_at", "titulo", "correo", "direccion", "valoracion", "telefono", "url") VALUES (980190962, '2019-10-18 20:57:21.909783', '2019-10-18 20:57:21.909783', DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT), (298486374, '2019-10-18 20:57:21.909783', '2019-10-18 20:57:21.909783', DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO "platos" ("id", "nombre", "precio", "descripcion", "cantidad_de_personas_sugeridas", "valoracion", "created_at", "updated_at") VALUES (980190962, 'MyString', 9.99, 'MyText', 1, 1, '2019-10-18 20:57:21.911789', '2019-10-18 20:57:21.911789'), (298486374, 'MyString', 9.99, 'MyText', 1, 1, '2019-10-18 20:57:21.911789', '2019-10-18 20:57:21.911789')[0m
+  [1m[35m (12.8ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (8.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "comentarios" DISABLE TRIGGER ALL;ALTER TABLE "ordenes" DISABLE TRIGGER ALL;ALTER TABLE "platos" DISABLE TRIGGER ALL;ALTER TABLE "restaurantes" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (5.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixtures Load (0.8ms)[0m  [1m[31mDELETE FROM "users";
+DELETE FROM "comentarios";
+DELETE FROM "ordenes";
+DELETE FROM "restaurantes";
+DELETE FROM "platos";
+INSERT INTO "users" ("id", "email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at", "admin") VALUES (980190962, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2019-10-18 20:57:21.952333', '2019-10-18 20:57:21.952333', DEFAULT), (298486374, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2019-10-18 20:57:21.952333', '2019-10-18 20:57:21.952333', DEFAULT);
+INSERT INTO "comentarios" ("id", "restaurante_o_plato", "usuario", "fecha_y_hora", "contenido", "puntaje_de_reputacion", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyString', '2019-09-30 02:18:48', 'MyText', 9.99, '2019-10-18 20:57:21.957565', '2019-10-18 20:57:21.957565'), (298486374, 'MyString', 'MyString', '2019-09-30 02:18:48', 'MyText', 9.99, '2019-10-18 20:57:21.957565', '2019-10-18 20:57:21.957565');
+INSERT INTO "ordenes" ("id", "platos_pedidos_en_la_orden", "precio_final_a_pagar", "medio_de_pago", "direccion_de_envio", "hora_estimada_de_entrega", "estado_del_pedido", "notas", "created_at", "updated_at") VALUES (980190962, 'MyString', 9.99, 'MyString', 'MyString', '02:19:53', 'MyString', 'MyText', '2019-10-18 20:57:21.963355', '2019-10-18 20:57:21.963355'), (298486374, 'MyString', 9.99, 'MyString', 'MyString', '02:19:53', 'MyString', 'MyText', '2019-10-18 20:57:21.963355', '2019-10-18 20:57:21.963355');
+INSERT INTO "restaurantes" ("id", "created_at", "updated_at", "titulo", "correo", "direccion", "valoracion", "telefono", "url") VALUES (980190962, '2019-10-18 20:57:21.965016', '2019-10-18 20:57:21.965016', DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT), (298486374, '2019-10-18 20:57:21.965016', '2019-10-18 20:57:21.965016', DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO "platos" ("id", "nombre", "precio", "descripcion", "cantidad_de_personas_sugeridas", "valoracion", "created_at", "updated_at") VALUES (980190962, 'MyString', 9.99, 'MyText', 1, 1, '2019-10-18 20:57:21.967469', '2019-10-18 20:57:21.967469'), (298486374, 'MyString', 9.99, 'MyText', 1, 1, '2019-10-18 20:57:21.967469', '2019-10-18 20:57:21.967469')[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (4.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "comentarios" DISABLE TRIGGER ALL;ALTER TABLE "ordenes" DISABLE TRIGGER ALL;ALTER TABLE "platos" DISABLE TRIGGER ALL;ALTER TABLE "restaurantes" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixtures Load (0.7ms)[0m  [1m[31mDELETE FROM "users";
+DELETE FROM "comentarios";
+DELETE FROM "ordenes";
+DELETE FROM "restaurantes";
+DELETE FROM "platos";
+INSERT INTO "users" ("id", "email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at", "admin") VALUES (980190962, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2019-10-18 20:57:22.007534', '2019-10-18 20:57:22.007534', DEFAULT), (298486374, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2019-10-18 20:57:22.007534', '2019-10-18 20:57:22.007534', DEFAULT);
+INSERT INTO "comentarios" ("id", "restaurante_o_plato", "usuario", "fecha_y_hora", "contenido", "puntaje_de_reputacion", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyString', '2019-09-30 02:18:48', 'MyText', 9.99, '2019-10-18 20:57:22.009316', '2019-10-18 20:57:22.009316'), (298486374, 'MyString', 'MyString', '2019-09-30 02:18:48', 'MyText', 9.99, '2019-10-18 20:57:22.009316', '2019-10-18 20:57:22.009316');
+INSERT INTO "ordenes" ("id", "platos_pedidos_en_la_orden", "precio_final_a_pagar", "medio_de_pago", "direccion_de_envio", "hora_estimada_de_entrega", "estado_del_pedido", "notas", "created_at", "updated_at") VALUES (980190962, 'MyString', 9.99, 'MyString', 'MyString', '02:19:53', 'MyString', 'MyText', '2019-10-18 20:57:22.018249', '2019-10-18 20:57:22.018249'), (298486374, 'MyString', 9.99, 'MyString', 'MyString', '02:19:53', 'MyString', 'MyText', '2019-10-18 20:57:22.018249', '2019-10-18 20:57:22.018249');
+INSERT INTO "restaurantes" ("id", "created_at", "updated_at", "titulo", "correo", "direccion", "valoracion", "telefono", "url") VALUES (980190962, '2019-10-18 20:57:22.019949', '2019-10-18 20:57:22.019949', DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT), (298486374, '2019-10-18 20:57:22.019949', '2019-10-18 20:57:22.019949', DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO "platos" ("id", "nombre", "precio", "descripcion", "cantidad_de_personas_sugeridas", "valoracion", "created_at", "updated_at") VALUES (980190962, 'MyString', 9.99, 'MyText', 1, 1, '2019-10-18 20:57:22.022345', '2019-10-18 20:57:22.022345'), (298486374, 'MyString', 9.99, 'MyText', 1, 1, '2019-10-18 20:57:22.022345', '2019-10-18 20:57:22.022345')[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (7.9ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "comentarios" DISABLE TRIGGER ALL;ALTER TABLE "ordenes" DISABLE TRIGGER ALL;ALTER TABLE "platos" DISABLE TRIGGER ALL;ALTER TABLE "restaurantes" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixtures Load (0.7ms)[0m  [1m[31mDELETE FROM "users";
+DELETE FROM "comentarios";
+DELETE FROM "ordenes";
+DELETE FROM "restaurantes";
+DELETE FROM "platos";
+INSERT INTO "users" ("id", "email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at", "admin") VALUES (980190962, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2019-10-18 20:57:22.063895', '2019-10-18 20:57:22.063895', DEFAULT), (298486374, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2019-10-18 20:57:22.063895', '2019-10-18 20:57:22.063895', DEFAULT);
+INSERT INTO "comentarios" ("id", "restaurante_o_plato", "usuario", "fecha_y_hora", "contenido", "puntaje_de_reputacion", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyString', '2019-09-30 02:18:48', 'MyText', 9.99, '2019-10-18 20:57:22.071698', '2019-10-18 20:57:22.071698'), (298486374, 'MyString', 'MyString', '2019-09-30 02:18:48', 'MyText', 9.99, '2019-10-18 20:57:22.071698', '2019-10-18 20:57:22.071698');
+INSERT INTO "ordenes" ("id", "platos_pedidos_en_la_orden", "precio_final_a_pagar", "medio_de_pago", "direccion_de_envio", "hora_estimada_de_entrega", "estado_del_pedido", "notas", "created_at", "updated_at") VALUES (980190962, 'MyString', 9.99, 'MyString', 'MyString', '02:19:53', 'MyString', 'MyText', '2019-10-18 20:57:22.073391', '2019-10-18 20:57:22.073391'), (298486374, 'MyString', 9.99, 'MyString', 'MyString', '02:19:53', 'MyString', 'MyText', '2019-10-18 20:57:22.073391', '2019-10-18 20:57:22.073391');
+INSERT INTO "restaurantes" ("id", "created_at", "updated_at", "titulo", "correo", "direccion", "valoracion", "telefono", "url") VALUES (980190962, '2019-10-18 20:57:22.075803', '2019-10-18 20:57:22.075803', DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT), (298486374, '2019-10-18 20:57:22.075803', '2019-10-18 20:57:22.075803', DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO "platos" ("id", "nombre", "precio", "descripcion", "cantidad_de_personas_sugeridas", "valoracion", "created_at", "updated_at") VALUES (980190962, 'MyString', 9.99, 'MyText', 1, 1, '2019-10-18 20:57:22.077518', '2019-10-18 20:57:22.077518'), (298486374, 'MyString', 9.99, 'MyText', 1, 1, '2019-10-18 20:57:22.077518', '2019-10-18 20:57:22.077518')[0m
+  [1m[35m (5.7ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "comentarios" DISABLE TRIGGER ALL;ALTER TABLE "ordenes" DISABLE TRIGGER ALL;ALTER TABLE "platos" DISABLE TRIGGER ALL;ALTER TABLE "restaurantes" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixtures Load (0.7ms)[0m  [1m[31mDELETE FROM "users";
+DELETE FROM "comentarios";
+DELETE FROM "ordenes";
+DELETE FROM "restaurantes";
+DELETE FROM "platos";
+INSERT INTO "users" ("id", "email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at", "admin") VALUES (980190962, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2019-10-18 20:57:22.119467', '2019-10-18 20:57:22.119467', DEFAULT), (298486374, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2019-10-18 20:57:22.119467', '2019-10-18 20:57:22.119467', DEFAULT);
+INSERT INTO "comentarios" ("id", "restaurante_o_plato", "usuario", "fecha_y_hora", "contenido", "puntaje_de_reputacion", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyString', '2019-09-30 02:18:48', 'MyText', 9.99, '2019-10-18 20:57:22.121154', '2019-10-18 20:57:22.121154'), (298486374, 'MyString', 'MyString', '2019-09-30 02:18:48', 'MyText', 9.99, '2019-10-18 20:57:22.121154', '2019-10-18 20:57:22.121154');
+INSERT INTO "ordenes" ("id", "platos_pedidos_en_la_orden", "precio_final_a_pagar", "medio_de_pago", "direccion_de_envio", "hora_estimada_de_entrega", "estado_del_pedido", "notas", "created_at", "updated_at") VALUES (980190962, 'MyString', 9.99, 'MyString', 'MyString', '02:19:53', 'MyString', 'MyText', '2019-10-18 20:57:22.123309', '2019-10-18 20:57:22.123309'), (298486374, 'MyString', 9.99, 'MyString', 'MyString', '02:19:53', 'MyString', 'MyText', '2019-10-18 20:57:22.123309', '2019-10-18 20:57:22.123309');
+INSERT INTO "restaurantes" ("id", "created_at", "updated_at", "titulo", "correo", "direccion", "valoracion", "telefono", "url") VALUES (980190962, '2019-10-18 20:57:22.129004', '2019-10-18 20:57:22.129004', DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT), (298486374, '2019-10-18 20:57:22.129004', '2019-10-18 20:57:22.129004', DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO "platos" ("id", "nombre", "precio", "descripcion", "cantidad_de_personas_sugeridas", "valoracion", "created_at", "updated_at") VALUES (980190962, 'MyString', 9.99, 'MyText', 1, 1, '2019-10-18 20:57:22.132286', '2019-10-18 20:57:22.132286'), (298486374, 'MyString', 9.99, 'MyText', 1, 1, '2019-10-18 20:57:22.132286', '2019-10-18 20:57:22.132286')[0m
+  [1m[35m (1.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (4.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "comentarios" DISABLE TRIGGER ALL;ALTER TABLE "ordenes" DISABLE TRIGGER ALL;ALTER TABLE "platos" DISABLE TRIGGER ALL;ALTER TABLE "restaurantes" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixtures Load (4.5ms)[0m  [1m[31mDELETE FROM "users";
+DELETE FROM "comentarios";
+DELETE FROM "ordenes";
+DELETE FROM "restaurantes";
+DELETE FROM "platos";
+INSERT INTO "users" ("id", "email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at", "admin") VALUES (980190962, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2019-10-18 20:57:22.167383', '2019-10-18 20:57:22.167383', DEFAULT), (298486374, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2019-10-18 20:57:22.167383', '2019-10-18 20:57:22.167383', DEFAULT);
+INSERT INTO "comentarios" ("id", "restaurante_o_plato", "usuario", "fecha_y_hora", "contenido", "puntaje_de_reputacion", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyString', '2019-09-30 02:18:48', 'MyText', 9.99, '2019-10-18 20:57:22.171762', '2019-10-18 20:57:22.171762'), (298486374, 'MyString', 'MyString', '2019-09-30 02:18:48', 'MyText', 9.99, '2019-10-18 20:57:22.171762', '2019-10-18 20:57:22.171762');
+INSERT INTO "ordenes" ("id", "platos_pedidos_en_la_orden", "precio_final_a_pagar", "medio_de_pago", "direccion_de_envio", "hora_estimada_de_entrega", "estado_del_pedido", "notas", "created_at", "updated_at") VALUES (980190962, 'MyString', 9.99, 'MyString', 'MyString', '02:19:53', 'MyString', 'MyText', '2019-10-18 20:57:22.174855', '2019-10-18 20:57:22.174855'), (298486374, 'MyString', 9.99, 'MyString', 'MyString', '02:19:53', 'MyString', 'MyText', '2019-10-18 20:57:22.174855', '2019-10-18 20:57:22.174855');
+INSERT INTO "restaurantes" ("id", "created_at", "updated_at", "titulo", "correo", "direccion", "valoracion", "telefono", "url") VALUES (980190962, '2019-10-18 20:57:22.179265', '2019-10-18 20:57:22.179265', DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT), (298486374, '2019-10-18 20:57:22.179265', '2019-10-18 20:57:22.179265', DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO "platos" ("id", "nombre", "precio", "descripcion", "cantidad_de_personas_sugeridas", "valoracion", "created_at", "updated_at") VALUES (980190962, 'MyString', 9.99, 'MyText', 1, 1, '2019-10-18 20:57:22.190636', '2019-10-18 20:57:22.190636'), (298486374, 'MyString', 9.99, 'MyText', 1, 1, '2019-10-18 20:57:22.190636', '2019-10-18 20:57:22.190636')[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (4.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "comentarios" DISABLE TRIGGER ALL;ALTER TABLE "ordenes" DISABLE TRIGGER ALL;ALTER TABLE "platos" DISABLE TRIGGER ALL;ALTER TABLE "restaurantes" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixtures Load (0.7ms)[0m  [1m[31mDELETE FROM "users";
+DELETE FROM "comentarios";
+DELETE FROM "ordenes";
+DELETE FROM "restaurantes";
+DELETE FROM "platos";
+INSERT INTO "users" ("id", "email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at", "admin") VALUES (980190962, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2019-10-18 20:57:22.219511', '2019-10-18 20:57:22.219511', DEFAULT), (298486374, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2019-10-18 20:57:22.219511', '2019-10-18 20:57:22.219511', DEFAULT);
+INSERT INTO "comentarios" ("id", "restaurante_o_plato", "usuario", "fecha_y_hora", "contenido", "puntaje_de_reputacion", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyString', '2019-09-30 02:18:48', 'MyText', 9.99, '2019-10-18 20:57:22.221311', '2019-10-18 20:57:22.221311'), (298486374, 'MyString', 'MyString', '2019-09-30 02:18:48', 'MyText', 9.99, '2019-10-18 20:57:22.221311', '2019-10-18 20:57:22.221311');
+INSERT INTO "ordenes" ("id", "platos_pedidos_en_la_orden", "precio_final_a_pagar", "medio_de_pago", "direccion_de_envio", "hora_estimada_de_entrega", "estado_del_pedido", "notas", "created_at", "updated_at") VALUES (980190962, 'MyString', 9.99, 'MyString', 'MyString', '02:19:53', 'MyString', 'MyText', '2019-10-18 20:57:22.225475', '2019-10-18 20:57:22.225475'), (298486374, 'MyString', 9.99, 'MyString', 'MyString', '02:19:53', 'MyString', 'MyText', '2019-10-18 20:57:22.225475', '2019-10-18 20:57:22.225475');
+INSERT INTO "restaurantes" ("id", "created_at", "updated_at", "titulo", "correo", "direccion", "valoracion", "telefono", "url") VALUES (980190962, '2019-10-18 20:57:22.229880', '2019-10-18 20:57:22.229880', DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT), (298486374, '2019-10-18 20:57:22.229880', '2019-10-18 20:57:22.229880', DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO "platos" ("id", "nombre", "precio", "descripcion", "cantidad_de_personas_sugeridas", "valoracion", "created_at", "updated_at") VALUES (980190962, 'MyString', 9.99, 'MyText', 1, 1, '2019-10-18 20:57:22.235196', '2019-10-18 20:57:22.235196'), (298486374, 'MyString', 9.99, 'MyText', 1, 1, '2019-10-18 20:57:22.235196', '2019-10-18 20:57:22.235196')[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "comentarios" DISABLE TRIGGER ALL;ALTER TABLE "ordenes" DISABLE TRIGGER ALL;ALTER TABLE "platos" DISABLE TRIGGER ALL;ALTER TABLE "restaurantes" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixtures Load (0.7ms)[0m  [1m[31mDELETE FROM "users";
+DELETE FROM "comentarios";
+DELETE FROM "ordenes";
+DELETE FROM "restaurantes";
+DELETE FROM "platos";
+INSERT INTO "users" ("id", "email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at", "admin") VALUES (980190962, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2019-10-18 20:57:22.265078', '2019-10-18 20:57:22.265078', DEFAULT), (298486374, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2019-10-18 20:57:22.265078', '2019-10-18 20:57:22.265078', DEFAULT);
+INSERT INTO "comentarios" ("id", "restaurante_o_plato", "usuario", "fecha_y_hora", "contenido", "puntaje_de_reputacion", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyString', '2019-09-30 02:18:48', 'MyText', 9.99, '2019-10-18 20:57:22.280362', '2019-10-18 20:57:22.280362'), (298486374, 'MyString', 'MyString', '2019-09-30 02:18:48', 'MyText', 9.99, '2019-10-18 20:57:22.280362', '2019-10-18 20:57:22.280362');
+INSERT INTO "ordenes" ("id", "platos_pedidos_en_la_orden", "precio_final_a_pagar", "medio_de_pago", "direccion_de_envio", "hora_estimada_de_entrega", "estado_del_pedido", "notas", "created_at", "updated_at") VALUES (980190962, 'MyString', 9.99, 'MyString', 'MyString', '02:19:53', 'MyString', 'MyText', '2019-10-18 20:57:22.282062', '2019-10-18 20:57:22.282062'), (298486374, 'MyString', 9.99, 'MyString', 'MyString', '02:19:53', 'MyString', 'MyText', '2019-10-18 20:57:22.282062', '2019-10-18 20:57:22.282062');
+INSERT INTO "restaurantes" ("id", "created_at", "updated_at", "titulo", "correo", "direccion", "valoracion", "telefono", "url") VALUES (980190962, '2019-10-18 20:57:22.283704', '2019-10-18 20:57:22.283704', DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT), (298486374, '2019-10-18 20:57:22.283704', '2019-10-18 20:57:22.283704', DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO "platos" ("id", "nombre", "precio", "descripcion", "cantidad_de_personas_sugeridas", "valoracion", "created_at", "updated_at") VALUES (980190962, 'MyString', 9.99, 'MyText', 1, 1, '2019-10-18 20:57:22.290911', '2019-10-18 20:57:22.290911'), (298486374, 'MyString', 9.99, 'MyText', 1, 1, '2019-10-18 20:57:22.290911', '2019-10-18 20:57:22.290911')[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "comentarios" DISABLE TRIGGER ALL;ALTER TABLE "ordenes" DISABLE TRIGGER ALL;ALTER TABLE "platos" DISABLE TRIGGER ALL;ALTER TABLE "restaurantes" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixtures Load (0.7ms)[0m  [1m[31mDELETE FROM "users";
+DELETE FROM "comentarios";
+DELETE FROM "ordenes";
+DELETE FROM "restaurantes";
+DELETE FROM "platos";
+INSERT INTO "users" ("id", "email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at", "admin") VALUES (980190962, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2019-10-18 20:57:22.352223', '2019-10-18 20:57:22.352223', DEFAULT), (298486374, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2019-10-18 20:57:22.352223', '2019-10-18 20:57:22.352223', DEFAULT);
+INSERT INTO "comentarios" ("id", "restaurante_o_plato", "usuario", "fecha_y_hora", "contenido", "puntaje_de_reputacion", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyString', '2019-09-30 02:18:48', 'MyText', 9.99, '2019-10-18 20:57:22.353964', '2019-10-18 20:57:22.353964'), (298486374, 'MyString', 'MyString', '2019-09-30 02:18:48', 'MyText', 9.99, '2019-10-18 20:57:22.353964', '2019-10-18 20:57:22.353964');
+INSERT INTO "ordenes" ("id", "platos_pedidos_en_la_orden", "precio_final_a_pagar", "medio_de_pago", "direccion_de_envio", "hora_estimada_de_entrega", "estado_del_pedido", "notas", "created_at", "updated_at") VALUES (980190962, 'MyString', 9.99, 'MyString', 'MyString', '02:19:53', 'MyString', 'MyText', '2019-10-18 20:57:22.355511', '2019-10-18 20:57:22.355511'), (298486374, 'MyString', 9.99, 'MyString', 'MyString', '02:19:53', 'MyString', 'MyText', '2019-10-18 20:57:22.355511', '2019-10-18 20:57:22.355511');
+INSERT INTO "restaurantes" ("id", "created_at", "updated_at", "titulo", "correo", "direccion", "valoracion", "telefono", "url") VALUES (980190962, '2019-10-18 20:57:22.357851', '2019-10-18 20:57:22.357851', DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT), (298486374, '2019-10-18 20:57:22.357851', '2019-10-18 20:57:22.357851', DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO "platos" ("id", "nombre", "precio", "descripcion", "cantidad_de_personas_sugeridas", "valoracion", "created_at", "updated_at") VALUES (980190962, 'MyString', 9.99, 'MyText', 1, 1, '2019-10-18 20:57:22.366949', '2019-10-18 20:57:22.366949'), (298486374, 'MyString', 9.99, 'MyText', 1, 1, '2019-10-18 20:57:22.366949', '2019-10-18 20:57:22.366949')[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (12.8ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "comentarios" DISABLE TRIGGER ALL;ALTER TABLE "ordenes" DISABLE TRIGGER ALL;ALTER TABLE "platos" DISABLE TRIGGER ALL;ALTER TABLE "restaurantes" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixtures Load (0.8ms)[0m  [1m[31mDELETE FROM "users";
+DELETE FROM "comentarios";
+DELETE FROM "ordenes";
+DELETE FROM "restaurantes";
+DELETE FROM "platos";
+INSERT INTO "users" ("id", "email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at", "admin") VALUES (980190962, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2019-10-18 20:57:22.391892', '2019-10-18 20:57:22.391892', DEFAULT), (298486374, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2019-10-18 20:57:22.391892', '2019-10-18 20:57:22.391892', DEFAULT);
+INSERT INTO "comentarios" ("id", "restaurante_o_plato", "usuario", "fecha_y_hora", "contenido", "puntaje_de_reputacion", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyString', '2019-09-30 02:18:48', 'MyText', 9.99, '2019-10-18 20:57:22.393593', '2019-10-18 20:57:22.393593'), (298486374, 'MyString', 'MyString', '2019-09-30 02:18:48', 'MyText', 9.99, '2019-10-18 20:57:22.393593', '2019-10-18 20:57:22.393593');
+INSERT INTO "ordenes" ("id", "platos_pedidos_en_la_orden", "precio_final_a_pagar", "medio_de_pago", "direccion_de_envio", "hora_estimada_de_entrega", "estado_del_pedido", "notas", "created_at", "updated_at") VALUES (980190962, 'MyString', 9.99, 'MyString', 'MyString', '02:19:53', 'MyString', 'MyText', '2019-10-18 20:57:22.395169', '2019-10-18 20:57:22.395169'), (298486374, 'MyString', 9.99, 'MyString', 'MyString', '02:19:53', 'MyString', 'MyText', '2019-10-18 20:57:22.395169', '2019-10-18 20:57:22.395169');
+INSERT INTO "restaurantes" ("id", "created_at", "updated_at", "titulo", "correo", "direccion", "valoracion", "telefono", "url") VALUES (980190962, '2019-10-18 20:57:22.399500', '2019-10-18 20:57:22.399500', DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT), (298486374, '2019-10-18 20:57:22.399500', '2019-10-18 20:57:22.399500', DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO "platos" ("id", "nombre", "precio", "descripcion", "cantidad_de_personas_sugeridas", "valoracion", "created_at", "updated_at") VALUES (980190962, 'MyString', 9.99, 'MyText', 1, 1, '2019-10-18 20:57:22.401577', '2019-10-18 20:57:22.401577'), (298486374, 'MyString', 9.99, 'MyText', 1, 1, '2019-10-18 20:57:22.401577', '2019-10-18 20:57:22.401577')[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (1.8ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "comentarios" DISABLE TRIGGER ALL;ALTER TABLE "ordenes" DISABLE TRIGGER ALL;ALTER TABLE "platos" DISABLE TRIGGER ALL;ALTER TABLE "restaurantes" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixtures Load (0.8ms)[0m  [1m[31mDELETE FROM "users";
+DELETE FROM "comentarios";
+DELETE FROM "ordenes";
+DELETE FROM "restaurantes";
+DELETE FROM "platos";
+INSERT INTO "users" ("id", "email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at", "admin") VALUES (980190962, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2019-10-18 20:57:22.433065', '2019-10-18 20:57:22.433065', DEFAULT), (298486374, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2019-10-18 20:57:22.433065', '2019-10-18 20:57:22.433065', DEFAULT);
+INSERT INTO "comentarios" ("id", "restaurante_o_plato", "usuario", "fecha_y_hora", "contenido", "puntaje_de_reputacion", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyString', '2019-09-30 02:18:48', 'MyText', 9.99, '2019-10-18 20:57:22.434900', '2019-10-18 20:57:22.434900'), (298486374, 'MyString', 'MyString', '2019-09-30 02:18:48', 'MyText', 9.99, '2019-10-18 20:57:22.434900', '2019-10-18 20:57:22.434900');
+INSERT INTO "ordenes" ("id", "platos_pedidos_en_la_orden", "precio_final_a_pagar", "medio_de_pago", "direccion_de_envio", "hora_estimada_de_entrega", "estado_del_pedido", "notas", "created_at", "updated_at") VALUES (980190962, 'MyString', 9.99, 'MyString', 'MyString', '02:19:53', 'MyString', 'MyText', '2019-10-18 20:57:22.436380', '2019-10-18 20:57:22.436380'), (298486374, 'MyString', 9.99, 'MyString', 'MyString', '02:19:53', 'MyString', 'MyText', '2019-10-18 20:57:22.436380', '2019-10-18 20:57:22.436380');
+INSERT INTO "restaurantes" ("id", "created_at", "updated_at", "titulo", "correo", "direccion", "valoracion", "telefono", "url") VALUES (980190962, '2019-10-18 20:57:22.437905', '2019-10-18 20:57:22.437905', DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT), (298486374, '2019-10-18 20:57:22.437905', '2019-10-18 20:57:22.437905', DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO "platos" ("id", "nombre", "precio", "descripcion", "cantidad_de_personas_sugeridas", "valoracion", "created_at", "updated_at") VALUES (980190962, 'MyString', 9.99, 'MyText', 1, 1, '2019-10-18 20:57:22.440868', '2019-10-18 20:57:22.440868'), (298486374, 'MyString', 9.99, 'MyText', 1, 1, '2019-10-18 20:57:22.440868', '2019-10-18 20:57:22.440868')[0m
+  [1m[35m (1.8ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (6.2ms)[0m  [1m[35mALTER TABLE "comentarios" DISABLE TRIGGER ALL;ALTER TABLE "ordenes" DISABLE TRIGGER ALL;ALTER TABLE "platos" DISABLE TRIGGER ALL;ALTER TABLE "restaurantes" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixtures Load (0.8ms)[0m  [1m[31mDELETE FROM "users";
+DELETE FROM "comentarios";
+DELETE FROM "ordenes";
+DELETE FROM "restaurantes";
+DELETE FROM "platos";
+INSERT INTO "users" ("id", "email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at", "admin") VALUES (980190962, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2019-10-18 20:57:22.469252', '2019-10-18 20:57:22.469252', DEFAULT), (298486374, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2019-10-18 20:57:22.469252', '2019-10-18 20:57:22.469252', DEFAULT);
+INSERT INTO "comentarios" ("id", "restaurante_o_plato", "usuario", "fecha_y_hora", "contenido", "puntaje_de_reputacion", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyString', '2019-09-30 02:18:48', 'MyText', 9.99, '2019-10-18 20:57:22.471260', '2019-10-18 20:57:22.471260'), (298486374, 'MyString', 'MyString', '2019-09-30 02:18:48', 'MyText', 9.99, '2019-10-18 20:57:22.471260', '2019-10-18 20:57:22.471260');
+INSERT INTO "ordenes" ("id", "platos_pedidos_en_la_orden", "precio_final_a_pagar", "medio_de_pago", "direccion_de_envio", "hora_estimada_de_entrega", "estado_del_pedido", "notas", "created_at", "updated_at") VALUES (980190962, 'MyString', 9.99, 'MyString', 'MyString', '02:19:53', 'MyString', 'MyText', '2019-10-18 20:57:22.476481', '2019-10-18 20:57:22.476481'), (298486374, 'MyString', 9.99, 'MyString', 'MyString', '02:19:53', 'MyString', 'MyText', '2019-10-18 20:57:22.476481', '2019-10-18 20:57:22.476481');
+INSERT INTO "restaurantes" ("id", "created_at", "updated_at", "titulo", "correo", "direccion", "valoracion", "telefono", "url") VALUES (980190962, '2019-10-18 20:57:22.482230', '2019-10-18 20:57:22.482230', DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT), (298486374, '2019-10-18 20:57:22.482230', '2019-10-18 20:57:22.482230', DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO "platos" ("id", "nombre", "precio", "descripcion", "cantidad_de_personas_sugeridas", "valoracion", "created_at", "updated_at") VALUES (980190962, 'MyString', 9.99, 'MyText', 1, 1, '2019-10-18 20:57:22.483842', '2019-10-18 20:57:22.483842'), (298486374, 'MyString', 9.99, 'MyText', 1, 1, '2019-10-18 20:57:22.483842', '2019-10-18 20:57:22.483842')[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (5.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "comentarios" DISABLE TRIGGER ALL;ALTER TABLE "ordenes" DISABLE TRIGGER ALL;ALTER TABLE "platos" DISABLE TRIGGER ALL;ALTER TABLE "restaurantes" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixtures Load (1.0ms)[0m  [1m[31mDELETE FROM "users";
+DELETE FROM "comentarios";
+DELETE FROM "ordenes";
+DELETE FROM "restaurantes";
+DELETE FROM "platos";
+INSERT INTO "users" ("id", "email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at", "admin") VALUES (980190962, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2019-10-18 20:57:22.511193', '2019-10-18 20:57:22.511193', DEFAULT), (298486374, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2019-10-18 20:57:22.511193', '2019-10-18 20:57:22.511193', DEFAULT);
+INSERT INTO "comentarios" ("id", "restaurante_o_plato", "usuario", "fecha_y_hora", "contenido", "puntaje_de_reputacion", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyString', '2019-09-30 02:18:48', 'MyText', 9.99, '2019-10-18 20:57:22.518762', '2019-10-18 20:57:22.518762'), (298486374, 'MyString', 'MyString', '2019-09-30 02:18:48', 'MyText', 9.99, '2019-10-18 20:57:22.518762', '2019-10-18 20:57:22.518762');
+INSERT INTO "ordenes" ("id", "platos_pedidos_en_la_orden", "precio_final_a_pagar", "medio_de_pago", "direccion_de_envio", "hora_estimada_de_entrega", "estado_del_pedido", "notas", "created_at", "updated_at") VALUES (980190962, 'MyString', 9.99, 'MyString', 'MyString', '02:19:53', 'MyString', 'MyText', '2019-10-18 20:57:22.520908', '2019-10-18 20:57:22.520908'), (298486374, 'MyString', 9.99, 'MyString', 'MyString', '02:19:53', 'MyString', 'MyText', '2019-10-18 20:57:22.520908', '2019-10-18 20:57:22.520908');
+INSERT INTO "restaurantes" ("id", "created_at", "updated_at", "titulo", "correo", "direccion", "valoracion", "telefono", "url") VALUES (980190962, '2019-10-18 20:57:22.526515', '2019-10-18 20:57:22.526515', DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT), (298486374, '2019-10-18 20:57:22.526515', '2019-10-18 20:57:22.526515', DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO "platos" ("id", "nombre", "precio", "descripcion", "cantidad_de_personas_sugeridas", "valoracion", "created_at", "updated_at") VALUES (980190962, 'MyString', 9.99, 'MyText', 1, 1, '2019-10-18 20:57:22.529322', '2019-10-18 20:57:22.529322'), (298486374, 'MyString', 9.99, 'MyText', 1, 1, '2019-10-18 20:57:22.529322', '2019-10-18 20:57:22.529322')[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (5.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "comentarios" DISABLE TRIGGER ALL;ALTER TABLE "ordenes" DISABLE TRIGGER ALL;ALTER TABLE "platos" DISABLE TRIGGER ALL;ALTER TABLE "restaurantes" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixtures Load (0.7ms)[0m  [1m[31mDELETE FROM "users";
+DELETE FROM "comentarios";
+DELETE FROM "ordenes";
+DELETE FROM "restaurantes";
+DELETE FROM "platos";
+INSERT INTO "users" ("id", "email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at", "admin") VALUES (980190962, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2019-10-18 20:57:22.551673', '2019-10-18 20:57:22.551673', DEFAULT), (298486374, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2019-10-18 20:57:22.551673', '2019-10-18 20:57:22.551673', DEFAULT);
+INSERT INTO "comentarios" ("id", "restaurante_o_plato", "usuario", "fecha_y_hora", "contenido", "puntaje_de_reputacion", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyString', '2019-09-30 02:18:48', 'MyText', 9.99, '2019-10-18 20:57:22.554691', '2019-10-18 20:57:22.554691'), (298486374, 'MyString', 'MyString', '2019-09-30 02:18:48', 'MyText', 9.99, '2019-10-18 20:57:22.554691', '2019-10-18 20:57:22.554691');
+INSERT INTO "ordenes" ("id", "platos_pedidos_en_la_orden", "precio_final_a_pagar", "medio_de_pago", "direccion_de_envio", "hora_estimada_de_entrega", "estado_del_pedido", "notas", "created_at", "updated_at") VALUES (980190962, 'MyString', 9.99, 'MyString', 'MyString', '02:19:53', 'MyString', 'MyText', '2019-10-18 20:57:22.560070', '2019-10-18 20:57:22.560070'), (298486374, 'MyString', 9.99, 'MyString', 'MyString', '02:19:53', 'MyString', 'MyText', '2019-10-18 20:57:22.560070', '2019-10-18 20:57:22.560070');
+INSERT INTO "restaurantes" ("id", "created_at", "updated_at", "titulo", "correo", "direccion", "valoracion", "telefono", "url") VALUES (980190962, '2019-10-18 20:57:22.567009', '2019-10-18 20:57:22.567009', DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT), (298486374, '2019-10-18 20:57:22.567009', '2019-10-18 20:57:22.567009', DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO "platos" ("id", "nombre", "precio", "descripcion", "cantidad_de_personas_sugeridas", "valoracion", "created_at", "updated_at") VALUES (980190962, 'MyString', 9.99, 'MyText', 1, 1, '2019-10-18 20:57:22.572358', '2019-10-18 20:57:22.572358'), (298486374, 'MyString', 9.99, 'MyText', 1, 1, '2019-10-18 20:57:22.572358', '2019-10-18 20:57:22.572358')[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (2.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (6.2ms)[0m  [1m[35mALTER TABLE "comentarios" DISABLE TRIGGER ALL;ALTER TABLE "ordenes" DISABLE TRIGGER ALL;ALTER TABLE "platos" DISABLE TRIGGER ALL;ALTER TABLE "restaurantes" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL[0m
+  [1m[35m (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixtures Load (1.2ms)[0m  [1m[31mDELETE FROM "users";
+DELETE FROM "comentarios";
+DELETE FROM "ordenes";
+DELETE FROM "restaurantes";
+DELETE FROM "platos";
+INSERT INTO "users" ("id", "email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at", "admin") VALUES (980190962, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2019-10-18 20:57:22.589323', '2019-10-18 20:57:22.589323', DEFAULT), (298486374, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2019-10-18 20:57:22.589323', '2019-10-18 20:57:22.589323', DEFAULT);
+INSERT INTO "comentarios" ("id", "restaurante_o_plato", "usuario", "fecha_y_hora", "contenido", "puntaje_de_reputacion", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyString', '2019-09-30 02:18:48', 'MyText', 9.99, '2019-10-18 20:57:22.594775', '2019-10-18 20:57:22.594775'), (298486374, 'MyString', 'MyString', '2019-09-30 02:18:48', 'MyText', 9.99, '2019-10-18 20:57:22.594775', '2019-10-18 20:57:22.594775');
+INSERT INTO "ordenes" ("id", "platos_pedidos_en_la_orden", "precio_final_a_pagar", "medio_de_pago", "direccion_de_envio", "hora_estimada_de_entrega", "estado_del_pedido", "notas", "created_at", "updated_at") VALUES (980190962, 'MyString', 9.99, 'MyString', 'MyString', '02:19:53', 'MyString', 'MyText', '2019-10-18 20:57:22.596388', '2019-10-18 20:57:22.596388'), (298486374, 'MyString', 9.99, 'MyString', 'MyString', '02:19:53', 'MyString', 'MyText', '2019-10-18 20:57:22.596388', '2019-10-18 20:57:22.596388');
+INSERT INTO "restaurantes" ("id", "created_at", "updated_at", "titulo", "correo", "direccion", "valoracion", "telefono", "url") VALUES (980190962, '2019-10-18 20:57:22.599430', '2019-10-18 20:57:22.599430', DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT), (298486374, '2019-10-18 20:57:22.599430', '2019-10-18 20:57:22.599430', DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO "platos" ("id", "nombre", "precio", "descripcion", "cantidad_de_personas_sugeridas", "valoracion", "created_at", "updated_at") VALUES (980190962, 'MyString', 9.99, 'MyText', 1, 1, '2019-10-18 20:57:22.604864', '2019-10-18 20:57:22.604864'), (298486374, 'MyString', 9.99, 'MyText', 1, 1, '2019-10-18 20:57:22.604864', '2019-10-18 20:57:22.604864')[0m
+  [1m[35m (6.6ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (1.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (6.9ms)[0m  [1m[35mALTER TABLE "comentarios" DISABLE TRIGGER ALL;ALTER TABLE "ordenes" DISABLE TRIGGER ALL;ALTER TABLE "platos" DISABLE TRIGGER ALL;ALTER TABLE "restaurantes" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (3.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixtures Load (0.8ms)[0m  [1m[31mDELETE FROM "users";
+DELETE FROM "comentarios";
+DELETE FROM "ordenes";
+DELETE FROM "restaurantes";
+DELETE FROM "platos";
+INSERT INTO "users" ("id", "email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at", "admin") VALUES (980190962, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2019-10-18 20:57:22.635520', '2019-10-18 20:57:22.635520', DEFAULT), (298486374, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2019-10-18 20:57:22.635520', '2019-10-18 20:57:22.635520', DEFAULT);
+INSERT INTO "comentarios" ("id", "restaurante_o_plato", "usuario", "fecha_y_hora", "contenido", "puntaje_de_reputacion", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyString', '2019-09-30 02:18:48', 'MyText', 9.99, '2019-10-18 20:57:22.638576', '2019-10-18 20:57:22.638576'), (298486374, 'MyString', 'MyString', '2019-09-30 02:18:48', 'MyText', 9.99, '2019-10-18 20:57:22.638576', '2019-10-18 20:57:22.638576');
+INSERT INTO "ordenes" ("id", "platos_pedidos_en_la_orden", "precio_final_a_pagar", "medio_de_pago", "direccion_de_envio", "hora_estimada_de_entrega", "estado_del_pedido", "notas", "created_at", "updated_at") VALUES (980190962, 'MyString', 9.99, 'MyString', 'MyString', '02:19:53', 'MyString', 'MyText', '2019-10-18 20:57:22.641003', '2019-10-18 20:57:22.641003'), (298486374, 'MyString', 9.99, 'MyString', 'MyString', '02:19:53', 'MyString', 'MyText', '2019-10-18 20:57:22.641003', '2019-10-18 20:57:22.641003');
+INSERT INTO "restaurantes" ("id", "created_at", "updated_at", "titulo", "correo", "direccion", "valoracion", "telefono", "url") VALUES (980190962, '2019-10-18 20:57:22.642782', '2019-10-18 20:57:22.642782', DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT), (298486374, '2019-10-18 20:57:22.642782', '2019-10-18 20:57:22.642782', DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO "platos" ("id", "nombre", "precio", "descripcion", "cantidad_de_personas_sugeridas", "valoracion", "created_at", "updated_at") VALUES (980190962, 'MyString', 9.99, 'MyText', 1, 1, '2019-10-18 20:57:22.644308', '2019-10-18 20:57:22.644308'), (298486374, 'MyString', 9.99, 'MyText', 1, 1, '2019-10-18 20:57:22.644308', '2019-10-18 20:57:22.644308')[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "comentarios" DISABLE TRIGGER ALL;ALTER TABLE "ordenes" DISABLE TRIGGER ALL;ALTER TABLE "platos" DISABLE TRIGGER ALL;ALTER TABLE "restaurantes" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixtures Load (0.7ms)[0m  [1m[31mDELETE FROM "users";
+DELETE FROM "comentarios";
+DELETE FROM "ordenes";
+DELETE FROM "restaurantes";
+DELETE FROM "platos";
+INSERT INTO "users" ("id", "email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at", "admin") VALUES (980190962, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2019-10-18 20:57:22.679293', '2019-10-18 20:57:22.679293', DEFAULT), (298486374, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2019-10-18 20:57:22.679293', '2019-10-18 20:57:22.679293', DEFAULT);
+INSERT INTO "comentarios" ("id", "restaurante_o_plato", "usuario", "fecha_y_hora", "contenido", "puntaje_de_reputacion", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyString', '2019-09-30 02:18:48', 'MyText', 9.99, '2019-10-18 20:57:22.682497', '2019-10-18 20:57:22.682497'), (298486374, 'MyString', 'MyString', '2019-09-30 02:18:48', 'MyText', 9.99, '2019-10-18 20:57:22.682497', '2019-10-18 20:57:22.682497');
+INSERT INTO "ordenes" ("id", "platos_pedidos_en_la_orden", "precio_final_a_pagar", "medio_de_pago", "direccion_de_envio", "hora_estimada_de_entrega", "estado_del_pedido", "notas", "created_at", "updated_at") VALUES (980190962, 'MyString', 9.99, 'MyString', 'MyString', '02:19:53', 'MyString', 'MyText', '2019-10-18 20:57:22.684130', '2019-10-18 20:57:22.684130'), (298486374, 'MyString', 9.99, 'MyString', 'MyString', '02:19:53', 'MyString', 'MyText', '2019-10-18 20:57:22.684130', '2019-10-18 20:57:22.684130');
+INSERT INTO "restaurantes" ("id", "created_at", "updated_at", "titulo", "correo", "direccion", "valoracion", "telefono", "url") VALUES (980190962, '2019-10-18 20:57:22.685740', '2019-10-18 20:57:22.685740', DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT), (298486374, '2019-10-18 20:57:22.685740', '2019-10-18 20:57:22.685740', DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO "platos" ("id", "nombre", "precio", "descripcion", "cantidad_de_personas_sugeridas", "valoracion", "created_at", "updated_at") VALUES (980190962, 'MyString', 9.99, 'MyText', 1, 1, '2019-10-18 20:57:22.691664', '2019-10-18 20:57:22.691664'), (298486374, 'MyString', 9.99, 'MyText', 1, 1, '2019-10-18 20:57:22.691664', '2019-10-18 20:57:22.691664')[0m
+  [1m[35m (2.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "comentarios" DISABLE TRIGGER ALL;ALTER TABLE "ordenes" DISABLE TRIGGER ALL;ALTER TABLE "platos" DISABLE TRIGGER ALL;ALTER TABLE "restaurantes" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixtures Load (0.8ms)[0m  [1m[31mDELETE FROM "users";
+DELETE FROM "comentarios";
+DELETE FROM "ordenes";
+DELETE FROM "restaurantes";
+DELETE FROM "platos";
+INSERT INTO "users" ("id", "email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at", "admin") VALUES (980190962, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2019-10-18 20:57:22.720621', '2019-10-18 20:57:22.720621', DEFAULT), (298486374, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2019-10-18 20:57:22.720621', '2019-10-18 20:57:22.720621', DEFAULT);
+INSERT INTO "comentarios" ("id", "restaurante_o_plato", "usuario", "fecha_y_hora", "contenido", "puntaje_de_reputacion", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyString', '2019-09-30 02:18:48', 'MyText', 9.99, '2019-10-18 20:57:22.722538', '2019-10-18 20:57:22.722538'), (298486374, 'MyString', 'MyString', '2019-09-30 02:18:48', 'MyText', 9.99, '2019-10-18 20:57:22.722538', '2019-10-18 20:57:22.722538');
+INSERT INTO "ordenes" ("id", "platos_pedidos_en_la_orden", "precio_final_a_pagar", "medio_de_pago", "direccion_de_envio", "hora_estimada_de_entrega", "estado_del_pedido", "notas", "created_at", "updated_at") VALUES (980190962, 'MyString', 9.99, 'MyString', 'MyString', '02:19:53', 'MyString', 'MyText', '2019-10-18 20:57:22.724757', '2019-10-18 20:57:22.724757'), (298486374, 'MyString', 9.99, 'MyString', 'MyString', '02:19:53', 'MyString', 'MyText', '2019-10-18 20:57:22.724757', '2019-10-18 20:57:22.724757');
+INSERT INTO "restaurantes" ("id", "created_at", "updated_at", "titulo", "correo", "direccion", "valoracion", "telefono", "url") VALUES (980190962, '2019-10-18 20:57:22.726419', '2019-10-18 20:57:22.726419', DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT), (298486374, '2019-10-18 20:57:22.726419', '2019-10-18 20:57:22.726419', DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO "platos" ("id", "nombre", "precio", "descripcion", "cantidad_de_personas_sugeridas", "valoracion", "created_at", "updated_at") VALUES (980190962, 'MyString', 9.99, 'MyText', 1, 1, '2019-10-18 20:57:22.729154', '2019-10-18 20:57:22.729154'), (298486374, 'MyString', 9.99, 'MyText', 1, 1, '2019-10-18 20:57:22.729154', '2019-10-18 20:57:22.729154')[0m
+  [1m[35m (5.7ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (5.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "comentarios" DISABLE TRIGGER ALL;ALTER TABLE "ordenes" DISABLE TRIGGER ALL;ALTER TABLE "platos" DISABLE TRIGGER ALL;ALTER TABLE "restaurantes" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixtures Load (0.7ms)[0m  [1m[31mDELETE FROM "users";
+DELETE FROM "comentarios";
+DELETE FROM "ordenes";
+DELETE FROM "restaurantes";
+DELETE FROM "platos";
+INSERT INTO "users" ("id", "email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at", "admin") VALUES (980190962, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2019-10-18 20:57:22.751228', '2019-10-18 20:57:22.751228', DEFAULT), (298486374, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2019-10-18 20:57:22.751228', '2019-10-18 20:57:22.751228', DEFAULT);
+INSERT INTO "comentarios" ("id", "restaurante_o_plato", "usuario", "fecha_y_hora", "contenido", "puntaje_de_reputacion", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyString', '2019-09-30 02:18:48', 'MyText', 9.99, '2019-10-18 20:57:22.754114', '2019-10-18 20:57:22.754114'), (298486374, 'MyString', 'MyString', '2019-09-30 02:18:48', 'MyText', 9.99, '2019-10-18 20:57:22.754114', '2019-10-18 20:57:22.754114');
+INSERT INTO "ordenes" ("id", "platos_pedidos_en_la_orden", "precio_final_a_pagar", "medio_de_pago", "direccion_de_envio", "hora_estimada_de_entrega", "estado_del_pedido", "notas", "created_at", "updated_at") VALUES (980190962, 'MyString', 9.99, 'MyString', 'MyString', '02:19:53', 'MyString', 'MyText', '2019-10-18 20:57:22.762791', '2019-10-18 20:57:22.762791'), (298486374, 'MyString', 9.99, 'MyString', 'MyString', '02:19:53', 'MyString', 'MyText', '2019-10-18 20:57:22.762791', '2019-10-18 20:57:22.762791');
+INSERT INTO "restaurantes" ("id", "created_at", "updated_at", "titulo", "correo", "direccion", "valoracion", "telefono", "url") VALUES (980190962, '2019-10-18 20:57:22.770935', '2019-10-18 20:57:22.770935', DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT), (298486374, '2019-10-18 20:57:22.770935', '2019-10-18 20:57:22.770935', DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO "platos" ("id", "nombre", "precio", "descripcion", "cantidad_de_personas_sugeridas", "valoracion", "created_at", "updated_at") VALUES (980190962, 'MyString', 9.99, 'MyText', 1, 1, '2019-10-18 20:57:22.772824', '2019-10-18 20:57:22.772824'), (298486374, 'MyString', 9.99, 'MyText', 1, 1, '2019-10-18 20:57:22.772824', '2019-10-18 20:57:22.772824')[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (2.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "comentarios" DISABLE TRIGGER ALL;ALTER TABLE "ordenes" DISABLE TRIGGER ALL;ALTER TABLE "platos" DISABLE TRIGGER ALL;ALTER TABLE "restaurantes" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (2.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixtures Load (1.4ms)[0m  [1m[31mDELETE FROM "users";
+DELETE FROM "comentarios";
+DELETE FROM "ordenes";
+DELETE FROM "restaurantes";
+DELETE FROM "platos";
+INSERT INTO "users" ("id", "email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at", "admin") VALUES (980190962, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2019-10-18 20:57:22.789235', '2019-10-18 20:57:22.789235', DEFAULT), (298486374, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2019-10-18 20:57:22.789235', '2019-10-18 20:57:22.789235', DEFAULT);
+INSERT INTO "comentarios" ("id", "restaurante_o_plato", "usuario", "fecha_y_hora", "contenido", "puntaje_de_reputacion", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyString', '2019-09-30 02:18:48', 'MyText', 9.99, '2019-10-18 20:57:22.793404', '2019-10-18 20:57:22.793404'), (298486374, 'MyString', 'MyString', '2019-09-30 02:18:48', 'MyText', 9.99, '2019-10-18 20:57:22.793404', '2019-10-18 20:57:22.793404');
+INSERT INTO "ordenes" ("id", "platos_pedidos_en_la_orden", "precio_final_a_pagar", "medio_de_pago", "direccion_de_envio", "hora_estimada_de_entrega", "estado_del_pedido", "notas", "created_at", "updated_at") VALUES (980190962, 'MyString', 9.99, 'MyString', 'MyString', '02:19:53', 'MyString', 'MyText', '2019-10-18 20:57:22.798618', '2019-10-18 20:57:22.798618'), (298486374, 'MyString', 9.99, 'MyString', 'MyString', '02:19:53', 'MyString', 'MyText', '2019-10-18 20:57:22.798618', '2019-10-18 20:57:22.798618');
+INSERT INTO "restaurantes" ("id", "created_at", "updated_at", "titulo", "correo", "direccion", "valoracion", "telefono", "url") VALUES (980190962, '2019-10-18 20:57:22.800312', '2019-10-18 20:57:22.800312', DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT), (298486374, '2019-10-18 20:57:22.800312', '2019-10-18 20:57:22.800312', DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO "platos" ("id", "nombre", "precio", "descripcion", "cantidad_de_personas_sugeridas", "valoracion", "created_at", "updated_at") VALUES (980190962, 'MyString', 9.99, 'MyText', 1, 1, '2019-10-18 20:57:22.802299', '2019-10-18 20:57:22.802299'), (298486374, 'MyString', 9.99, 'MyText', 1, 1, '2019-10-18 20:57:22.802299', '2019-10-18 20:57:22.802299')[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (6.8ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "comentarios" DISABLE TRIGGER ALL;ALTER TABLE "ordenes" DISABLE TRIGGER ALL;ALTER TABLE "platos" DISABLE TRIGGER ALL;ALTER TABLE "restaurantes" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixtures Load (0.7ms)[0m  [1m[31mDELETE FROM "users";
+DELETE FROM "comentarios";
+DELETE FROM "ordenes";
+DELETE FROM "restaurantes";
+DELETE FROM "platos";
+INSERT INTO "users" ("id", "email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at", "admin") VALUES (980190962, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2019-10-18 20:57:22.828889', '2019-10-18 20:57:22.828889', DEFAULT), (298486374, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2019-10-18 20:57:22.828889', '2019-10-18 20:57:22.828889', DEFAULT);
+INSERT INTO "comentarios" ("id", "restaurante_o_plato", "usuario", "fecha_y_hora", "contenido", "puntaje_de_reputacion", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyString', '2019-09-30 02:18:48', 'MyText', 9.99, '2019-10-18 20:57:22.834873', '2019-10-18 20:57:22.834873'), (298486374, 'MyString', 'MyString', '2019-09-30 02:18:48', 'MyText', 9.99, '2019-10-18 20:57:22.834873', '2019-10-18 20:57:22.834873');
+INSERT INTO "ordenes" ("id", "platos_pedidos_en_la_orden", "precio_final_a_pagar", "medio_de_pago", "direccion_de_envio", "hora_estimada_de_entrega", "estado_del_pedido", "notas", "created_at", "updated_at") VALUES (980190962, 'MyString', 9.99, 'MyString', 'MyString', '02:19:53', 'MyString', 'MyText', '2019-10-18 20:57:22.836451', '2019-10-18 20:57:22.836451'), (298486374, 'MyString', 9.99, 'MyString', 'MyString', '02:19:53', 'MyString', 'MyText', '2019-10-18 20:57:22.836451', '2019-10-18 20:57:22.836451');
+INSERT INTO "restaurantes" ("id", "created_at", "updated_at", "titulo", "correo", "direccion", "valoracion", "telefono", "url") VALUES (980190962, '2019-10-18 20:57:22.838057', '2019-10-18 20:57:22.838057', DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT), (298486374, '2019-10-18 20:57:22.838057', '2019-10-18 20:57:22.838057', DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO "platos" ("id", "nombre", "precio", "descripcion", "cantidad_de_personas_sugeridas", "valoracion", "created_at", "updated_at") VALUES (980190962, 'MyString', 9.99, 'MyText', 1, 1, '2019-10-18 20:57:22.840282', '2019-10-18 20:57:22.840282'), (298486374, 'MyString', 9.99, 'MyText', 1, 1, '2019-10-18 20:57:22.840282', '2019-10-18 20:57:22.840282')[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (4.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "comentarios" DISABLE TRIGGER ALL;ALTER TABLE "ordenes" DISABLE TRIGGER ALL;ALTER TABLE "platos" DISABLE TRIGGER ALL;ALTER TABLE "restaurantes" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixtures Load (0.7ms)[0m  [1m[31mDELETE FROM "users";
+DELETE FROM "comentarios";
+DELETE FROM "ordenes";
+DELETE FROM "restaurantes";
+DELETE FROM "platos";
+INSERT INTO "users" ("id", "email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at", "admin") VALUES (980190962, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2019-10-18 20:57:22.860729', '2019-10-18 20:57:22.860729', DEFAULT), (298486374, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, '2019-10-18 20:57:22.860729', '2019-10-18 20:57:22.860729', DEFAULT);
+INSERT INTO "comentarios" ("id", "restaurante_o_plato", "usuario", "fecha_y_hora", "contenido", "puntaje_de_reputacion", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyString', '2019-09-30 02:18:48', 'MyText', 9.99, '2019-10-18 20:57:22.871465', '2019-10-18 20:57:22.871465'), (298486374, 'MyString', 'MyString', '2019-09-30 02:18:48', 'MyText', 9.99, '2019-10-18 20:57:22.871465', '2019-10-18 20:57:22.871465');
+INSERT INTO "ordenes" ("id", "platos_pedidos_en_la_orden", "precio_final_a_pagar", "medio_de_pago", "direccion_de_envio", "hora_estimada_de_entrega", "estado_del_pedido", "notas", "created_at", "updated_at") VALUES (980190962, 'MyString', 9.99, 'MyString', 'MyString', '02:19:53', 'MyString', 'MyText', '2019-10-18 20:57:22.875314', '2019-10-18 20:57:22.875314'), (298486374, 'MyString', 9.99, 'MyString', 'MyString', '02:19:53', 'MyString', 'MyText', '2019-10-18 20:57:22.875314', '2019-10-18 20:57:22.875314');
+INSERT INTO "restaurantes" ("id", "created_at", "updated_at", "titulo", "correo", "direccion", "valoracion", "telefono", "url") VALUES (980190962, '2019-10-18 20:57:22.877020', '2019-10-18 20:57:22.877020', DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT), (298486374, '2019-10-18 20:57:22.877020', '2019-10-18 20:57:22.877020', DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO "platos" ("id", "nombre", "precio", "descripcion", "cantidad_de_personas_sugeridas", "valoracion", "created_at", "updated_at") VALUES (980190962, 'MyString', 9.99, 'MyText', 1, 1, '2019-10-18 20:57:22.878625', '2019-10-18 20:57:22.878625'), (298486374, 'MyString', 9.99, 'MyText', 1, 1, '2019-10-18 20:57:22.878625', '2019-10-18 20:57:22.878625')[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
