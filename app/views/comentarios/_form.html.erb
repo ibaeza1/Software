@@ -1,0 +1,42 @@
+<%= form_with(model: comentario, local: true) do |form| %>
+  <% if comentario.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(comentario.errors.count, "error") %> prohibited this comentario from being saved:</h2>
+
+      <ul>
+      <% comentario.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :restaurante_o_plato %>
+    <%= form.text_field :restaurante_o_plato %>
+  </div>
+
+  <div class="field">
+    <%= form.label :usuario %>
+    <%= form.text_field :usuario %>
+  </div>
+
+  <div class="field">
+    <%= form.label :fecha_y_hora %>
+    <%= form.datetime_select :fecha_y_hora %>
+  </div>
+
+  <div class="field">
+    <%= form.label :contenido %>
+    <%= form.text_area :contenido %>
+  </div>
+
+  <div class="field">
+    <%= form.label :puntaje_de_reputacion %>
+    <%= form.text_field :puntaje_de_reputacion %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

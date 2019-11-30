@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  restaurante_o_plato: MyString
+  usuario: MyString
+  fecha_y_hora: 2019-09-30 02:18:48
+  contenido: MyText
+  puntaje_de_reputacion: 9.99
+
+two:
+  restaurante_o_plato: MyString
+  usuario: MyString
+  fecha_y_hora: 2019-09-30 02:18:48
+  contenido: MyText
+  puntaje_de_reputacion: 9.99

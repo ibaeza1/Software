@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Ordenes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Platos pedidos en la orden</th>
+      <th>Precio final a pagar</th>
+      <th>Medio de pago</th>
+      <th>Direccion de envio</th>
+      <th>Hora estimada de entrega</th>
+      <th>Estado del pedido</th>
+      <th>Notas</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @ordenes.each do |ordene| %>
+      <tr>
+        <td><%= ordene.platos_pedidos_en_la_orden %></td>
+        <td><%= ordene.precio_final_a_pagar %></td>
+        <td><%= ordene.medio_de_pago %></td>
+        <td><%= ordene.direccion_de_envio %></td>
+        <td><%= ordene.hora_estimada_de_entrega %></td>
+        <td><%= ordene.estado_del_pedido %></td>
+        <td><%= ordene.notas %></td>
+        <td><%= link_to 'Show', ordene %></td>
+        <td><%= link_to 'Edit', edit_ordene_path(ordene) %></td>
+        <td><%= link_to 'Destroy', ordene, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Volver a Restaurantes', restaurantes_path %>
+
+<%= link_to 'Crear Orden', new_ordene_path %>

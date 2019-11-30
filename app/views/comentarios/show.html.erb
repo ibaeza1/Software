@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+<% if @comentarios%>
+  <% @comentarios.each do |comentario|%>
+    <p>
+      <strong>Restaurante o plato:</strong>
+      <%= comentario.restaurante_o_plato %>
+    </p>
+
+    <p>
+      <strong>Usuario:</strong>
+      <%= comentario.usuario %>
+    </p>
+
+    <p>
+      <strong>Fecha y hora:</strong>
+      <%= comentario.fecha_y_hora %>
+    </p>
+
+    <p>
+      <strong>Contenido:</strong>
+      <%= comentario.contenido %>
+    </p>
+
+    <p>
+      <strong>Puntaje de reputacion:</strong>
+      <%= comentario.puntaje_de_reputacion %>
+    </p>
+  <% end %>
+  <% if current_user.try(:admin?) %>
+    <%= link_to 'Edit', edit_comentario_path(comentario) %>
+  <% end %>
+<% end %>
+<% if @comentarios==[] %>
+  <p>No existen comentarios actualmente</p>
+<% end %>
+<%= link_to 'Back', restaurantes_path %>

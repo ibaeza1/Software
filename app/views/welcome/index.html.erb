@@ -1,0 +1,72 @@
+
+<!--
+ <link href="Css.css" rel="stylesheet" type="text/css" >
+<h1>Restaurantes Grupo 13</h1>
+
+<div>
+  <% if signed_in? %>
+    <%= link_to "Salir", destroy_user_session_path, method: :delete %>
+    <%= link_to "Mostrar restaurantes", restaurantes_path %>
+    <a class="btn btn-lg btn-primary" href="restaurantes">Restaurantes &raquo;</a>
+  <% else %>
+    <%= link_to "Registrarse", new_user_registration_path %>
+    <%= link_to "Ingresar", new_user_session_path %>
+    <%= link_to "Mostrar restaurantes", restaurantes_path %>
+   
+    
+   
+    
+  <% end %>
+</div> 
+-->
+
+<style type="text/css">
+   body { background-image: url("https://okdiario.com/img/2019/05/27/dia-mundial-de-la-hamburguesa-655x368.jpg") !important;
+   background-position: center !important;
+   background-repeat: no-repeat !important;
+   background-size: cover !important; } /* Adding !important forces the browser to overwrite the default style applied by Bootstrap */
+</style>
+
+<main class="container" role="main">
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+<a class="btn btn-lg btn-primary" href="file:///home/ignacia/Escritorio/Grupo13-proyecto/grupo13/trejo.jpeg" target="_blank" role="button">Trejo meme stash &raquo;</a><button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+  <span class="navbar-toggler-icon"></span>
+</button>
+
+<div class="collapse navbar-collapse" id="navbarsExampleDefault">
+
+  <ul class="navbar-nav mr-auto">
+  <% if signed_in? %>
+
+    <a class="nav-link" href="restaurantes">Mostrar Restaurantes <span class="sr-only">(current)</span></a>
+  </li>
+  
+  <%= link_to "Salir", destroy_user_session_path, method: :delete ,class: "nav-link"%>
+  
+  <% else %>
+  <li class="nav-item active">
+  <a class="nav-link" href="users/sign_in">Ingresar <span class="sr-only">(current)</span></a>
+</li>
+
+<li class="nav-item active">
+  <a class="nav-link" href="users/sign_up">Registrarse <span class="sr-only">(current)</span></a>
+</li>
+<% end %>
+
+      </div>
+    </li>
+  </ul>
+
+</div>
+</nav>
+</main>
+<main class="container" role="main">
+
+  <h1>Nube Colectiva</h1>
+  <p class="lead">Bienvenido</p>
+  <a class="btn btn-lg btn-primary" href="https://blog.nubecolectiva.com" target="_blank" role="button">Blog &raquo;</a></div>
+<footer></footer><div class="container"><div align="center">Desarrollado por Trejos Dream Team</div>
+
+<br><br>
+
+

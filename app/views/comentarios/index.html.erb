@@ -1,0 +1,38 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Comentarios</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Restaurante o plato</th>
+      <th>Usuario</th>
+      <th>Fecha y hora</th>
+      <th>Contenido</th>
+      <th>Puntaje de reputacion</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @comentarios.each do |comentario| %>
+      <tr>
+        <td><%= comentario.restaurante_o_plato %></td>
+        <td><%= comentario.usuario %></td>
+        <td><%= comentario.fecha_y_hora %></td>
+        <td><%= comentario.contenido %></td>
+        <td><%= comentario.puntaje_de_reputacion %></td>
+        <td><%= link_to 'Show', comentario %></td>
+	<% if current_user.try(:admin?) %> 
+        	<td><%= link_to 'Edit', edit_comentario_path(comentario) %></td>
+        	<td><%= link_to 'Destroy', comentario, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+	<% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<link rel="stylesheet" href="../../stylesheets/comentarios.scss">
+<%= link_to 'Nuevo Comentario', new_comentario_path %>
+<%= link_to 'Restaurantes', restaurantes_path %>

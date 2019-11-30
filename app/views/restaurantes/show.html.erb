@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h3> Informacion </h3>
+<p>Nombre: <%= @restaurantes.titulo %></p>
+<p>Direccion: <%= @restaurantes.direccion %></p>
+<p>Telefono: <%= @restaurantes.telefono %></p>
+<p>Valoracion: <%= @restaurantes.valoracion %></p>
+<p>Correo: <%= @restaurantes.correo %></p>
+<p>Url: <%= @restaurantes.url %></p>
+<% if @restaurantes.avatar.attached? %>
+    <img src="<%=(url_for(@restaurantes.avatar))%>">
+<% else %>
+  <%= image_tag("no_image.jpg") %>
+<% end %>
+
+<%= link_to 'Ver Platos', plato_path(@restaurantes) %>
+<b>
+<%= link_to 'Ver Ordenes', ordene_path(@restaurantes) %>
+<b>
+<%= link_to 'Ver Comentarios', comentario_path(@restaurantes) %>
+<b>
+<%= link_to 'Back', restaurantes_path %>
+<b>
+<%= link_to 'Crear Orden', new_ordene_path %>
+

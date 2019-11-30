@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+<% if @platos %>
+  <% @platos.each do |plato|%>
+    <p>
+      <strong>Nombre:</strong>
+      <%= plato.nombre %>
+    </p>
+
+    <p>
+      <strong>Precio:</strong>
+      <%= plato.precio %>
+    </p>
+
+    <p>
+      <strong>Descripcion:</strong>
+      <%= plato.descripcion %>
+    </p>
+
+    <p>
+      <strong>Cantidad de personas sugeridas:</strong>
+      <%= plato.cantidad_de_personas_sugeridas %>
+    </p>
+
+    <p>
+      <strong>Valoracion:</strong>
+      <%= plato.valoracion %>
+    </p>
+    <% if plato.imagen.attached? %>
+      <img src="<%=(url_for(plato.imagen))%>">
+    <% else %>
+      <%= image_tag("no_image.jpg") %>
+    <% end %>   -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover; 
+    <%= link_to 'Edit', edit_plato_path(plato) %>
+  <% end %>
+ 
+<% end %>
+<% if @platos==[] %>
+  <p> No existen platos </p>
+<% end %>
+
+<%= link_to 'Back', restaurantes_path %>

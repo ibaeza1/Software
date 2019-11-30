@@ -1,0 +1,52 @@
+<%= form_with(model: ordene, local: true) do |form| %>
+  <% if ordene.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(ordene.errors.count, "error") %> prohibited this ordene from being saved:</h2>
+
+      <ul>
+      <% ordene.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :platos_pedidos_en_la_orden %>
+    <%= form.text_field :platos_pedidos_en_la_orden %>
+  </div>
+
+  <div class="field">
+    <%= form.label :precio_final_a_pagar %>
+    <%= form.text_field :precio_final_a_pagar %>
+  </div>
+
+  <div class="field">
+    <%= form.label :medio_de_pago %>
+    <%= form.text_field :medio_de_pago %>
+  </div>
+
+  <div class="field">
+    <%= form.label :direccion_de_envio %>
+    <%= form.text_field :direccion_de_envio %>
+  </div>
+
+  <div class="field">
+    <%= form.label :hora_estimada_de_entrega %>
+    <%= form.time_select :hora_estimada_de_entrega %>
+  </div>
+
+  <div class="field">
+    <%= form.label :estado_del_pedido %>
+    <%= form.text_field :estado_del_pedido %>
+  </div>
+
+  <div class="field">
+    <%= form.label :notas %>
+    <%= form.text_area :notas %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
