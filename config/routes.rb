@@ -3,15 +3,7 @@ Rails.application.routes.draw do
   resources :ordenes
   resources :comentarios
   resources :restaurantes
-  get '/restaurantes', to: 'restaurantes#index'
-  post '/restaurantes/new', to: 'restaurantes#create' 
-  get '/restaurantes/new', to: 'restaurante#index'
-  get '/restaurantes/:id', to: 'restaurantes#show'
-  get '/restaurantes/:id', to: 'restaurantes#edit'
-  post '/comentarios/new', to: 'comentarios#create'
-  post '/ordenes/new', to: 'ordenes#create'
-  post '/platos/:id', to: 'platos#edit'
-  
+
   
   devise_for :users
   get 'welcome/index'
