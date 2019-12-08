@@ -1,37 +1,40 @@
+<h1 style="color:white;font-family: ubuntu;font-size: 400%;">Órdenes</h1>
+
+
 <p id="notice"><%= notice %></p>
 <% if @ordenes %>
   <% @ordenes.each do |ordene| %>
-    <p>
+    <p style="color:white;font-family: ubuntu;font-size: 150%;margin-top:20px">
       <strong>Platos pedidos en la orden:</strong>
       <%= ordene.platos_pedidos_en_la_orden %>
     </p>
 
-    <p>
+    <p style="color:white;font-family: ubuntu;font-size: 150%;margin-top:20px">
       <strong>Precio final a pagar:</strong>
       <%= ordene.precio_final_a_pagar %>
     </p>
 
-    <p>
+    <p style="color:white;font-family: ubuntu;font-size: 150%;margin-top:20px">
       <strong>Medio de pago:</strong>
       <%= ordene.medio_de_pago %>
     </p>
 
-    <p>
+    <p style="color:white;font-family: ubuntu;font-size: 150%;margin-top:20px">
       <strong>Direccion de envio:</strong>
       <%= ordene.direccion_de_envio %>
     </p>
 
-    <p>
+    <p style="color:white;font-family: ubuntu;font-size: 150%;margin-top:20px">
       <strong>Hora estimada de entrega:</strong>
       <%= ordene.hora_estimada_de_entrega %>
     </p>
 
-    <p>
+    <p style="color:white;font-family: ubuntu;font-size: 150%;margin-top:20px">
       <strong>Estado del pedido:</strong>
       <%= ordene.estado_del_pedido %>
     </p>
 
-    <p>
+    <p style="color:white;font-family: ubuntu;font-size: 150%;margin-top:20px">
       <strong>Notas:</strong>
       <%= ordene.notas %>
     </p>
@@ -45,3 +48,54 @@
 <% end %>
 
 <%= link_to 'Back', restaurantes_path %>
+<style> 
+body { background-image: url('/assets/nacha.png') !important;
+    background-position: collapse !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important; } /* Adding !important forces the browser to overwrite the default style applied by Bootstrap */
+</style> 
+
+<main class="container" role="main">
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+
+
+<div class="collapse navbar-collapse" id="navbarsExampleDefault">
+
+  <ul class="navbar-nav mr-auto">
+  <% if signed_in? %>
+
+    <a class="nav-link" href="restaurantes">Mostrar Restaurantes <span class="sr-only">(current)</span></a>
+  </li>
+  
+  <%= link_to "Salir", destroy_user_session_path, method: :delete ,class: "nav-link"%>
+  
+  <% else %>
+  <li class="nav-item active">
+  <a class="nav-link" href="users/sign_in">Ingresar <span class="sr-only">(current)</span></a>
+</li>
+
+<li class="nav-item active">
+  <a class="nav-link" href="users/sign_up">Registrarse <span class="sr-only">(current)</span></a>
+</li>
+<% end %>
+
+      </div>
+    </li>
+  </ul>
+
+</div>
+</nav>
+</main>
+
+
+
+
+<footer class="fixed-bottom">
+  <div class="footer-copyright text-center py-3">
+     <font color="white">Desarrollado por Trejos Dream Team</font>
+  </div>
+  </footer>
+
+
+
+

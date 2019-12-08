@@ -1,35 +1,35 @@
-<h1>New Restaurante</h1>
+<h1 style="color:white;font-family: ubuntu;font-size: 400%;">Nuevo Restaurante</h1>
 
 <%= form_with(model: Restaurante.new, local: true) do |form| %>
-  <div class="field">
+  <div class="field" style="color:white;font-family: ubuntu;font-size: 150%;">
     <%= form.label :titulo%>
     <%= form.text_field :titulo%>
   </div>
 
-  <div class="field">
+  <div class="field" style="color:white;font-family: ubuntu;font-size: 150%;">
     <%= form.label :correo%>
     <%= form.text_field :correo%>
   </div>
 
-  <div class="field">
+  <div class="field" style="color:white;font-family: ubuntu;font-size: 150%;">
     <%= form.label :direccion%>
     <%= form.text_field :direccion%>
   </div>
 
-  <div class="field">
+  <div class="field" style="color:white;font-family: ubuntu;font-size: 150%;">
     <%= form.label :valoracion%>
     <%= form.text_field :valoracion%>
   </div>
 
-  <div class="field">
+  <div class="field" style="color:white;font-family: ubuntu;font-size: 150%;">
     <%= form.label :telefono%>
     <%= form.text_field :telefono%>
   </div>
-  <div class="field">
+  <div class="field" style="color:white;font-family: ubuntu;font-size: 150%;">
     <%= form.label :url%>
     <%= form.text_field :url%>
   </div>
-  <div class="field">
+  <div class="field" style="color:white;font-family: ubuntu;font-size: 150%;">
     <%= form.label :avatar%>
     <%= form.file_field :avatar%>
   </div>
@@ -39,6 +39,54 @@
   </div>
 <% end %>
 
+
+<style> 
+body { background-image: url('/assets/nacha.png') !important;
+    background-position: collapse !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important; } /* Adding !important forces the browser to overwrite the default style applied by Bootstrap */
+</style> 
+
+<main class="container" role="main">
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+
+
+<div class="collapse navbar-collapse" id="navbarsExampleDefault">
+
+  <ul class="navbar-nav mr-auto">
+  <% if signed_in? %>
+
+    <a class="nav-link" href="restaurantes">Mostrar Restaurantes <span class="sr-only">(current)</span></a>
+  </li>
+  
+  <%= link_to "Salir", destroy_user_session_path, method: :delete ,class: "nav-link"%>
+  
+  <% else %>
+  <li class="nav-item active">
+  <a class="nav-link" href="users/sign_in">Ingresar <span class="sr-only">(current)</span></a>
+</li>
+
+<li class="nav-item active">
+  <a class="nav-link" href="users/sign_up">Registrarse <span class="sr-only">(current)</span></a>
+</li>
+<% end %>
+
+      </div>
+    </li>
+  </ul>
+
+</div>
+</nav>
+</main>
+
+
+
+
+<footer class="fixed-bottom">
+  <div class="footer-copyright text-center py-3">
+     <font color="white">Desarrollado por Trejos Dream Team</font>
+  </div>
+  </footer>
 
 
 

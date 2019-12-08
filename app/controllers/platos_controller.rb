@@ -1,7 +1,6 @@
 class PlatosController < ApplicationController
  
-  before_action :authenticate_user!, :except => [:show, :index]
-
+  before_action :set_plato, only: [:show, :edit, :update, :destroy]
   # GET /platos
   # GET /platos.json
   def index
@@ -10,6 +9,7 @@ class PlatosController < ApplicationController
 
   # GET /platos/1
   # GET /platos/1.json
+
   def show
     @platos = Plato.where(:id => params[:id])
     if @platos.present?
@@ -22,11 +22,12 @@ class PlatosController < ApplicationController
 
   # GET /platos/new
   def new
-    @plato = Plato.new
+    @platos = Plato.new
   end
 
   # GET /platos/1/edit
   def edit
+    @plato = Plato.find(params[:id])
   end
 
   # POST /platos
@@ -45,13 +46,17 @@ class PlatosController < ApplicationController
     end
   end
 
-  # PATCH/PUT /platos/1
-  # PATCH/PUT /platos/1.json
+
   def update
+    puts('---------------------------')
     respond_to do |format|
-      if @plato.update(plato_params)
-        format.html { redirect_to @plato, notice: 'Plato was successfully updated.' }
-        format.json { render :show, status: :ok, location: @plato }
+      puts('------------------###--------')
+
+      if @platos.update(plato_params)
+        puts('--------###--------###--------')
+
+        format.html { redirect_to :action=> "index", notice: 'Plato was successfully updated.' }
+        format.json { render :index, status: :ok, location: @plato }
       else
         format.html { render :edit }
         format.json { render json: @plato.errors, status: :unprocessable_entity }
@@ -62,7 +67,7 @@ class PlatosController < ApplicationController
   # DELETE /platos/1
   # DELETE /platos/1.json
   def destroy
-    @plato.destroy
+    @platos.destroy
     respond_to do |format|
       format.html { redirect_to platos_url, notice: 'Plato was successfully destroyed.' }
       format.json { head :no_content }
@@ -72,11 +77,18 @@ class PlatosController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_plato
-      @plato = Plato.find(params[:id])
+      @platos = Plato.find(params[:id])
     end
 
+    def plato_params
+      params.fetch( :plato, {})
+    end
+
+
+
+  private
     # Never trust parameters from the scary internet, only allow the white list through.
     def plato_params
       params.require(:plato).permit(:nombre, :precio, :descripcion, :cantidad_de_personas_sugeridas, :valoracion)
     end
-end
+  end

@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   resources :platos
   resources :ordenes
   resources :comentarios
-  resources :restaurantes
+  resources :restaurantes do
+    resources :platos
+  end
 
   
   devise_for :users

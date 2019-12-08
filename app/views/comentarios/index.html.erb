@@ -1,15 +1,15 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Comentarios</h1>
+<h1 style="color:white;font-family: ubuntu;font-size: 400%;margin-top:20px">Comentarios</h1>
 
 <table>
   <thead>
     <tr>
-      <th>Restaurante o plato</th>
-      <th>Usuario</th>
-      <th>Fecha y hora</th>
-      <th>Contenido</th>
-      <th>Puntaje de reputacion</th>
+      <th  style="color:white;font-family: ubuntu;font-size: 150%;margin-top:20px">Restaurante o plato</th>
+      <th style="color:white;font-family: ubuntu;font-size: 150%;margin-top:20px">Usuario</th>
+      <th style="color:white;font-family: ubuntu;font-size: 150%;margin-top:20px">Fecha y hora</th>
+      <th style="color:white;font-family: ubuntu;font-size: 150%;margin-top:20px">Contenido</th>
+      <th style="color:white;font-family: ubuntu;font-size: 150%;margin-top:20px">Puntaje de reputacion</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -17,12 +17,12 @@
   <tbody>
     <% @comentarios.each do |comentario| %>
       <tr>
-        <td><%= comentario.restaurante_o_plato %></td>
-        <td><%= comentario.usuario %></td>
-        <td><%= comentario.fecha_y_hora %></td>
-        <td><%= comentario.contenido %></td>
-        <td><%= comentario.puntaje_de_reputacion %></td>
-        <td><%= link_to 'Show', comentario %></td>
+        <td  style="color:white;font-family: ubuntu;font-size: 150%;margin-top:20px"><%= comentario.restaurante_o_plato %></td>
+        <td style="color:white;font-family: ubuntu;font-size: 150%;margin-top:20px"><%= comentario.usuario %></td>
+        <td style="color:white;font-family: ubuntu;font-size: 150%;margin-top:20px"><%= comentario.fecha_y_hora %></td>
+        <td style="color:white;font-family: ubuntu;font-size: 150%;margin-top:20px"><%= comentario.contenido %></td>
+        <td style="color:white;font-family: ubuntu;font-size: 150%;margin-top:20px"><%= comentario.puntaje_de_reputacion %></td>
+        <td style="color:white;font-family: ubuntu;font-size: 150%;margin-top:20px"><%= link_to 'Show', comentario %></td>
 	<% if current_user.try(:admin?) %> 
         	<td><%= link_to 'Edit', edit_comentario_path(comentario) %></td>
         	<td><%= link_to 'Destroy', comentario, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -34,5 +34,62 @@
 
 <br>
 <link rel="stylesheet" href="../../stylesheets/comentarios.scss">
-<%= link_to 'Nuevo Comentario', new_comentario_path %>
-<%= link_to 'Restaurantes', restaurantes_path %>
+<%= link_to 'Nuevo Comentario', new_comentario_path,:style=>'color: white;font-family: ubuntu;font-size: 100%;margin-left:20px' %>
+<%= link_to 'Restaurantes', restaurantes_path ,:style=>'color: white;font-family: ubuntu;font-size: 100%;margin-left:20px'%>
+<tbody>
+    <% @comentarios.each do |comentario| %>
+      <td><%= link_to 'Destroy', comentario, method: :delete, data: { confirm: 'Estas seguro?' } %></td>
+      <% end %>
+    
+  
+</tbody>
+
+
+<style> 
+body { background-image: url('/assets/nacha.png') !important;
+    background-position: collapse !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important; } /* Adding !important forces the browser to overwrite the default style applied by Bootstrap */
+</style> 
+
+<main class="container" role="main">
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+
+
+<div class="collapse navbar-collapse" id="navbarsExampleDefault">
+
+  <ul class="navbar-nav mr-auto">
+  <% if signed_in? %>
+
+    <a class="nav-link" href="restaurantes">Mostrar Restaurantes <span class="sr-only">(current)</span></a>
+  </li>
+  
+  <%= link_to "Salir", destroy_user_session_path, method: :delete ,class: "nav-link"%>
+  
+  <% else %>
+  <li class="nav-item active">
+  <a class="nav-link" href="users/sign_in">Ingresar <span class="sr-only">(current)</span></a>
+</li>
+
+<li class="nav-item active">
+  <a class="nav-link" href="users/sign_up">Registrarse <span class="sr-only">(current)</span></a>
+</li>
+<% end %>
+
+      </div>
+    </li>
+  </ul>
+
+</div>
+</nav>
+</main>
+
+
+
+
+<footer class="fixed-bottom">
+  <div class="footer-copyright text-center py-3">
+     <font color="white">Desarrollado por Trejos Dream Team</font>
+  </div>
+  </footer>
+     

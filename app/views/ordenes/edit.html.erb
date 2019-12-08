@@ -1,6 +1,101 @@
-<h1>Editing Ordene</h1>
+<h1 style="color:white;font-family: ubuntu;font-size: 400%;">Nuevs Orden</h1>
 
-<%= render 'form', ordene: @ordene %>
+<%= form_with(model: Ordene.new, local: true) do |form| %>
+    <% if ordene.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(ordene.errors.count, "error") %> prohibited this ordene from being saved:</h2>
+  
+        <ul>
+        <% ordene.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+  
 
-<%= link_to 'Show', @ordene %> |
-<%= link_to 'Back', ordenes_path %>
+    <div class="field"  style="color:white;font-family: ubuntu;font-size: 150%;">
+    <%= form.label :platos_pedidos_en_la_orden %>
+    <%= form.text_field :platos_pedidos_en_la_orden %>
+    </div>
+  
+    <div class="field" style="color:white;font-family: ubuntu;font-size: 150%;">
+      <%= form.label :medio_de_pago %>
+      <%= form.text_field :medio_de_pago %>
+    </div>
+  
+    <div class="field" style="color:white;font-family: ubuntu;font-size: 150%;">
+      <%= form.label :direccion_de_envio %>
+      <%= form.text_field :direccion_de_envio %>
+    </div>
+  
+    <div class="field" style="color:white;font-family: ubuntu;font-size: 150%;">
+      <%= form.label :hora_estimada_de_entrega %>
+      <%= form.time_select :hora_estimada_de_entrega %>
+    </div>
+  
+    <div class="field" style="color:white;font-family: ubuntu;font-size: 150%;">
+      <%= form.label :estado_del_pedido %>
+      <%= form.text_field :estado_del_pedido %>
+    </div>
+  
+    <div class="field" style="color:white;font-family: ubuntu;font-size: 150%;">
+      <%= form.label :notas %>
+      <%= form.text_area :notas %>
+    </div>
+  
+    <div class="actions">
+      <%= form.submit %>
+    </div>
+  <% end %>
+  <style> 
+  body { background-image: url('/assets/nacha.png') !important;
+      background-position: collapse !important;
+      background-repeat: no-repeat !important;
+      background-size: cover !important; } /* Adding !important forces the browser to overwrite the default style applied by Bootstrap */
+  </style> 
+  
+  <main class="container" role="main">
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+  
+  
+  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+  
+    <ul class="navbar-nav mr-auto">
+    <% if signed_in? %>
+  
+      <a class="nav-link" href="restaurantes">Mostrar Restaurantes <span class="sr-only">(current)</span></a>
+    </li>
+    
+    <%= link_to "Salir", destroy_user_session_path, method: :delete ,class: "nav-link"%>
+    
+    <% else %>
+    <li class="nav-item active">
+    <a class="nav-link" href="users/sign_in">Ingresar <span class="sr-only">(current)</span></a>
+  </li>
+  
+  <li class="nav-item active">
+    <a class="nav-link" href="users/sign_up">Registrarse <span class="sr-only">(current)</span></a>
+  </li>
+  <% end %>
+  
+        </div>
+      </li>
+    </ul>
+  
+  </div>
+  </nav>
+  </main>
+  
+  
+  
+  
+  <footer class="fixed-bottom">
+    <div class="footer-copyright text-center py-3">
+       <font color="white">Desarrollado por Trejos Dream Team</font>
+    </div>
+    </footer>
+
+
+
+

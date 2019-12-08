@@ -59,13 +59,14 @@ ActiveRecord::Schema.define(version: 2019_11_24_231827) do
   end
 
   create_table "platos", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string "nombre"
     t.decimal "precio"
     t.text "descripcion"
     t.integer "cantidad_de_personas_sugeridas"
     t.integer "valoracion"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+
   end
 
   create_table "restaurantes", force: :cascade do |t|

@@ -1,6 +1,102 @@
-<h1>Editing Comentario</h1>
+<%= form_with(model: @comentarios, url: comentario_path(@comentarios), method: 'patch') do |form| %>
+    <% if comentario.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(comentario.errors.count, "error") %> prohibited this comentario from being saved:</h2>
+  
+        <ul>
+        <% comentario.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+  
+    <div class="field"  style="color:white;font-family: ubuntu;font-size: 150%;">
+    <%= form.label :restaurante_o_plato %>
+    <%= form.text_field :restaurante_o_plato %>
+    </div>
+  
+    <div class="field" style="color:white;font-family: ubuntu;font-size: 150%;">
+      <%= form.label :Usuario %>
+      <%= form.text_field :usuario %>
+    </div>
+  
+    <div class="field" style="color:white;font-family: ubuntu;font-size: 150%;">
+    <%= form.label :usuario %>
+    <%= form.text_field :usuario %>
+    </div>
+  
+    <div class="field" style="color:white;font-family: ubuntu;font-size: 150%;">
+      <<%= form.label :fecha_y_hora %>
+      <%= form.datetime_select :fecha_y_hora %>
+    </div>
+  
+    <div class="field" style="color:white;font-family: ubuntu;font-size: 150%;">
+    <%= form.label :contenido %>
+    <%= form.text_area :contenido %>
+    </div>
+  
+    <div class="field" style="color:white;font-family: ubuntu;font-size: 150%;">
+    <%= form.label :puntaje_de_reputacion %>
+    <%= form.text_field :puntaje_de_reputacion %>
+    </div>
+    
+    <div class="actions">
+      <%= form.submit %>
+    </div>
+  <% end %>
 
-<%= render 'form', comentario: @comentario %>
+  <style> 
+body { background-image: url('/assets/nacha.png') !important;
+    background-position: collapse !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important; } /* Adding !important forces the browser to overwrite the default style applied by Bootstrap */
+</style> 
 
-<%= link_to 'Show', @comentario %> |
-<%= link_to 'Back', comentarios_path %>
+<main class="container" role="main">
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+
+
+<div class="collapse navbar-collapse" id="navbarsExampleDefault">
+
+  <ul class="navbar-nav mr-auto">
+  <% if signed_in? %>
+
+    <a class="nav-link" href="restaurantes">Mostrar Restaurantes <span class="sr-only">(current)</span></a>
+  </li>
+  
+  <%= link_to "Salir", destroy_user_session_path, method: :delete ,class: "nav-link"%>
+  
+  <% else %>
+  <li class="nav-item active">
+  <a class="nav-link" href="users/sign_in">Ingresar <span class="sr-only">(current)</span></a>
+</li>
+
+<li class="nav-item active">
+  <a class="nav-link" href="users/sign_up">Registrarse <span class="sr-only">(current)</span></a>
+</li>
+<% end %>
+
+      </div>
+    </li>
+  </ul>
+
+</div>
+</nav>
+</main>
+
+
+
+
+<footer class="fixed-bottom">
+  <div class="footer-copyright text-center py-3">
+     <font color="white">Desarrollado por Trejos Dream Team</font>
+  </div>
+  </footer>
+
+
+
+
+
+
+  

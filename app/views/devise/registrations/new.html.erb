@@ -1,0 +1,76 @@
+<h2 style="color:white;font-family: ubuntu;font-size: 400%;">Sign up</h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+
+  <div class="field" style="color:white;font-family: ubuntu;font-size: 200%;">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+
+  <div class="field" style="color:white;font-family: ubuntu;font-size: 150%;">
+    <%= f.label :password %>
+    <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %><br />
+    <%= f.password_field :password, autocomplete: "new-password" %>
+  </div>
+
+  <div class="field" style="color:white;font-family: ubuntu;font-size: 150%;">
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  </div>
+
+  <div class="actions" style="color:white;font-family: ubuntu;font-size: 150%;">
+    <%= f.submit "Sign up" %>
+  </div>
+<% end %>
+
+<%= render "devise/shared/links"%>
+<style> 
+body { background-image: url('/assets/nacha.png') !important;
+    background-position: collapse !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important; } /* Adding !important forces the browser to overwrite the default style applied by Bootstrap */
+</style> 
+
+<main class="container" role="main">
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+
+
+<div class="collapse navbar-collapse" id="navbarsExampleDefault">
+
+  <ul class="navbar-nav mr-auto">
+  <% if signed_in? %>
+
+    <a class="nav-link" href="restaurantes">Mostrar Restaurantes <span class="sr-only">(current)</span></a>
+  </li>
+  
+  <%= link_to "Salir", destroy_user_session_path, method: :delete ,class: "nav-link"%>
+  
+  <% else %>
+  <li class="nav-item active">
+  <a class="nav-link" href="users/sign_in">Ingresar <span class="sr-only">(current)</span></a>
+</li>
+
+<li class="nav-item active">
+  <a class="nav-link" href="users/sign_up">Registrarse <span class="sr-only">(current)</span></a>
+</li>
+<% end %>
+
+      </div>
+    </li>
+  </ul>
+
+</div>
+</nav>
+</main>
+
+
+
+
+<footer class="fixed-bottom">
+  <div class="footer-copyright text-center py-3">
+     <font color="white">Desarrollado por Trejos Dream Team</font>
+  </div>
+  </footer>

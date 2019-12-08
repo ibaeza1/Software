@@ -1,27 +1,83 @@
+
+<style> 
+body { background-image: url('/assets/nacha.png') !important;
+    background-position: collapse !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important; } /* Adding !important forces the browser to overwrite the default style applied by Bootstrap */
+</style> 
+
+
+
+
+
 <p id="notice"><%= notice %></p>
 
-<h3> Informacion </h3>
-<p>Nombre: <%= @restaurantes.titulo %></p>
-<p>Direccion: <%= @restaurantes.direccion %></p>
-<p>Telefono: <%= @restaurantes.telefono %></p>
-<p>Valoracion: <%= @restaurantes.valoracion %></p>
-<p>Correo: <%= @restaurantes.correo %></p>
-<p>Url: <%= @restaurantes.url %></p>
+
+<h3 style="color:white;font-family: ubuntu;font-size: 400%;margin-top:20px"> Informacion </h3>
+<p style="color:white;font-family: ubuntu;font-size: 150%;margin-top:20px">Nombre: <%= @restaurantes.titulo %></p>
+<p style="color:white;font-family: ubuntu;font-size: 150%;margin-top:20px">Direccion: <%= @restaurantes.direccion %></p>
+<p style="color:white;font-family: ubuntu;font-size: 150%;margin-top:20px">Telefono: <%= @restaurantes.telefono %></p>
+<p style="color:white;font-family: ubuntu;font-size: 150%;margin-top:20px">Valoracion: <%= @restaurantes.valoracion %></p>
+<p style="color:white;font-family: ubuntu;font-size: 150%;margin-top:20px">Correo: <%= @restaurantes.correo %></p>
+<p style="color:white;font-family: ubuntu;font-size: 150%;margin-top:20px">Url: <%= @restaurantes.url %></p>
 <% if @restaurantes.avatar.attached? %>
     <img src="<%=(url_for(@restaurantes.avatar))%>">
 <% else %>
   <%= image_tag("no_image.jpg") %>
 <% end %>
 
-<%= link_to 'Ver Platos', plato_path(@restaurantes) %>
+
+
+<%= link_to 'Ver Platos', plato_path(@restaurantes) ,:style=>'color: white;font-family: ubuntu;font-size: 100%;margin-left:20px' %>
 <b>
-<%= link_to 'Ver Ordenes', ordene_path(@restaurantes) %>
+<%= link_to 'Crear Plato', new_plato_path ,:style=>'color: white;font-family: ubuntu;font-size: 100%;margin-left:20px' %>
 <b>
-<%= link_to 'Ver Comentarios', comentario_path(@restaurantes) %>
+<%= link_to 'Ver Ordenes', ordene_path(@restaurantes) ,:style=>'color: white;font-family: ubuntu;font-size: 100%;margin-left:20px' %>
 <b>
-<%= link_to 'Back', restaurantes_path %>
+<%= link_to 'Ver Comentarios', comentario_path(@restaurantes) ,:style=>'color: white;font-family: ubuntu;font-size: 100%;margin-left:20px' %>
 <b>
-<%= link_to 'Crear Orden', new_ordene_path %>
+<%= link_to 'Back', restaurantes_path  ,:style=>'color: white;font-family: ubuntu;font-size: 100%;margin-left:20px'%>
 <b>
-<%= link_to 'Editar Restaurante', edit_restaurante_path %>
+<%= link_to 'Crear Orden', new_ordene_path  ,:style=>'color: white;font-family: ubuntu;font-size: 100%;margin-left:20px'%>
 <b>
+<%= link_to 'Editar Restaurante', edit_restaurante_path  ,:style=>'color: white;font-family: ubuntu;font-size: 100%;margin-left:20px'%>
+<b>
+
+
+<main class="container" role="main">
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+
+
+<div class="collapse navbar-collapse" id="navbarsExampleDefault">
+
+  <ul class="navbar-nav mr-auto">
+  <% if signed_in? %>
+
+    <a class="nav-link" href="restaurantes">Mostrar Restaurantes <span class="sr-only">(current)</span></a>
+  </li>
+  
+  <%= link_to "Salir", destroy_user_session_path, method: :delete ,class: "nav-link"%>
+  
+  <% else %>
+  <li class="nav-item active">
+  <a class="nav-link" href="users/sign_in">Ingresar <span class="sr-only">(current)</span></a>
+</li>
+
+<li class="nav-item active">
+  <a class="nav-link" href="users/sign_up">Registrarse <span class="sr-only">(current)</span></a>
+</li>
+<% end %>
+
+      </div>
+    </li>
+  </ul>
+
+</div>
+</nav>
+</main>
+
+<footer class="fixed-bottom">
+  <div class="footer-copyright text-center py-3">
+     <font color="white">Desarrollado por Trejos Dream Team</font>
+  </div>
+  </footer>

@@ -3,6 +3,9 @@ class RestaurantesController < ApplicationController
 
   # GET /restaurantes
   # GET /restaurantes.json
+  
+  
+  
   def index
     @restaurantes = Restaurante.all
   end
@@ -36,25 +39,27 @@ class RestaurantesController < ApplicationController
     end
   end
 
-  private
-    def restaurante_params
-      params.require(:restaurante).permit(:titulo, :correo, :direccion, :valoracion, :telefono, :url, :avatar)
-    end
-
- 
-  # PATCH/PUT /restaurantes/1
-  # PATCH/PUT /restaurantes/1.json
   def update
+    puts('---------------------------')
+    puts(restaurante_params)
     respond_to do |format|
       if @restaurantes.update(restaurante_params)
-        format.html { redirect_to @restaurante, notice: 'Restaurante was successfully updated.' }
-        format.json { render :show, status: :ok, location: @restaurante }
+        puts('======================================')
+        format.html { redirect_to :action=> "index", notice: 'Restaurante was successfully updated.' }
+        format.json { render :index, status: :ok, location: @restaurante }
       else
         format.html { render :edit }
         format.json { render json: @restaurante.errors, status: :unprocessable_entity }
       end
     end
   end
+
+  
+
+ 
+  # PATCH/PUT /restaurantes/1
+  # PATCH/PUT /restaurantes/1.json
+
 
   # DELETE /restaurantes/1
   # DELETE /restaurantes/1.json
@@ -77,4 +82,8 @@ class RestaurantesController < ApplicationController
       params.fetch(:restaurante, {})
     end
 
-end
+  private
+    def restaurante_params
+      params.require(:restaurante).permit(:titulo, :correo, :direccion, :valoracion, :telefono, :url, :avatar)
+    end
+  end
