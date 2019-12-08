@@ -53,10 +53,13 @@ body { background-image: url('/assets/nacha.png') !important;
   <ul class="navbar-nav mr-auto">
   <% if signed_in? %>
 
-    <a class="nav-link" href="restaurantes">Mostrar Restaurantes <span class="sr-only">(current)</span></a>
-  </li>
+  <%=link_to "Perfil", current_user,class: "nav-link", :style=>'color: white;font-family: ubuntu;font-size: 100%;margin-left:20px'%>
+
+
+  <%=link_to "Mostrar Restaurantes", restaurantes_url, class: "nav-link", :style=>'color: white;font-family: ubuntu;font-size: 100%;margin-left:20px'%>
+
   
-  <%= link_to "Salir", destroy_user_session_path, method: :delete ,class: "nav-link"%>
+  <%= link_to "Salir", destroy_user_session_path, method: :delete ,class: "nav-link" ,:style=>'color: white;font-family: ubuntu;font-size: 100%;margin-left:20px'%>
   
   <% else %>
   <li class="nav-item active">

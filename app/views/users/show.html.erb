@@ -1,0 +1,70 @@
+<h1 style="color:white;font-family: ubuntu;font-size: 350%;margin-top:20px">Tu perfil</h1>
+
+
+
+
+
+<% if @user.image.attached? %>
+<img src="<%=(url_for(plato.imagen))%>">
+<% else %>
+<%= image_tag("no_image.jpg") %>
+<% end %>  
+
+<p style="color:white;font-family: ubuntu;font-size: 150%;margin-top:20px">Email: <%= @user.email %></p>
+
+
+
+<li><%= link_to "Restaurantes", restaurante_path, :style=>"color:white;font-family: ubuntu;font-size: 100%;margin-top:20px" %></li>
+<li><%= link_to "Editar cuenta", edit_user_registration_path ,:style=>"color:white;font-family: ubuntu;font-size: 100%;margin-down:70px"%></li>
+
+<style> 
+body { background-image: url('/assets/nacha.png') !important;
+    background-position: collapse !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important; } /* Adding !important forces the browser to overwrite the default style applied by Bootstrap */
+</style> 
+
+<main class="container" role="main">
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+
+
+<div class="collapse navbar-collapse" id="navbarsExampleDefault">
+
+  <ul class="navbar-nav mr-auto">
+  <% if signed_in? %>
+
+  <%=link_to "Mostrar Restaurantes", restaurantes_url, class: "nav-link", :style=>'color: white;font-family: ubuntu;font-size: 100%;margin-left:20px'%>
+  </li>
+  
+  <%= link_to "Salir", destroy_user_session_path, method: :delete ,class: "nav-link"%>
+  
+  <% else %>
+  <li class="nav-item active">
+  <a class="nav-link" href="users/sign_in">Ingresar <span class="sr-only">(current)</span></a>
+</li>
+
+<li class="nav-item active">
+  <a class="nav-link" href="users/sign_up">Registrarse <span class="sr-only">(current)</span></a>
+</li>
+<% end %>
+
+      </div>
+    </li>
+  </ul>
+
+</div>
+</nav>
+</main>
+
+
+
+
+<footer class="fixed-bottom">
+  <div class="footer-copyright text-center py-3">
+     <font color="white">Desarrollado por Trejos Dream Team</font>
+  </div>
+  </footer>
+
+
+
+

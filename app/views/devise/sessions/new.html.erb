@@ -1,6 +1,9 @@
-<h2 style="color:white;font-family: ubuntu;font-size: 400%;"> Log in</h2>
+<h2 style="color:white;font-family: ubuntu;font-size: 400%;"> Iniciar sesion</h2>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+
+  
+
   <div class="field" style="color:white;font-family: ubuntu;font-size: 200%;">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
@@ -42,11 +45,13 @@ body { background-image: url('/assets/nacha.png') !important;
   <ul class="navbar-nav mr-auto">
   <% if signed_in? %>
 
-    <a class="nav-link" href="restaurantes">Mostrar Restaurantes <span class="sr-only">(current)</span></a>
-  </li>
+  <%=link_to "Perfil", current_user,class: "nav-link", :style=>'color: white;font-family: ubuntu;font-size: 100%;margin-left:20px'%>
+
+
+  <%=link_to "Mostrar Restaurantes", restaurantes_url, class: "nav-link", :style=>'color: white;font-family: ubuntu;font-size: 100%;margin-left:20px'%>
+
   
-  <%= link_to "Salir", destroy_user_session_path, method: :delete ,class: "nav-link"%>
-  
+  <%= link_to "Salir", destroy_user_session_path, method: :delete ,class: "nav-link" ,:style=>'color: white;font-family: ubuntu;font-size: 100%;margin-left:20px'%>
   <% else %>
   <li class="nav-item active">
   <a class="nav-link" href="users/sign_in">Ingresar <span class="sr-only">(current)</span></a>

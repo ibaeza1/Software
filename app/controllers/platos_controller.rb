@@ -37,14 +37,15 @@ class PlatosController < ApplicationController
 
     respond_to do |format|
       if @plato.save
-        format.html { redirect_to @plato, notice: 'Plato was successfully created.' }
-        format.json { render :show, status: :created, location: @plato }
+        format.html { redirect_to restaurante_platos_path(@plato), notice: 'Plato was successfully created.' }
+        format.json { render :show, status: :created, location: @restaurante }
       else
         format.html { render :new }
         format.json { render json: @plato.errors, status: :unprocessable_entity }
       end
     end
   end
+
 
 
   def update
@@ -64,6 +65,7 @@ class PlatosController < ApplicationController
     end
   end
 
+
   # DELETE /platos/1
   # DELETE /platos/1.json
   def destroy
@@ -79,6 +81,8 @@ class PlatosController < ApplicationController
     def set_plato
       @platos = Plato.find(params[:id])
     end
+
+
 
     def plato_params
       params.fetch( :plato, {})

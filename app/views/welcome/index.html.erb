@@ -1,24 +1,4 @@
 
-<!--
- <link href="Css.css" rel="stylesheet" type="text/css" >
-<h1>Restaurantes Grupo 13</h1>
-
-<div>
-  <% if signed_in? %>
-    <%= link_to "Salir", destroy_user_session_path, method: :delete %>
-    <%= link_to "Mostrar restaurantes", restaurantes_path %>
-    <a class="btn btn-lg btn-primary" href="restaurantes">Restaurantes &raquo;</a>
-  <% else %>
-    <%= link_to "Registrarse", new_user_registration_path %>
-    <%= link_to "Ingresar", new_user_session_path %>
-    <%= link_to "Mostrar restaurantes", restaurantes_path %>
-   
-    
-   
-    
-  <% end %>
-</div> 
--->
 <style> 
 body { background-image: url('/assets/Sintitulo-1-01.png') !important;
     background-position: collapse !important;
@@ -35,17 +15,22 @@ body { background-image: url('/assets/Sintitulo-1-01.png') !important;
   <ul class="navbar-nav mr-auto">
   <% if signed_in? %>
 
-    <a class="nav-link" href="restaurantes">Mostrar Restaurantes <span class="sr-only">(current)</span></a>
-  </li>
+  <%=link_to "Perfil", current_user,class: "nav-link", :style=>'color: white;font-family: ubuntu;font-size: 100%;margin-left:20px'%>
+
+
+  <%=link_to "Mostrar Restaurantes", restaurantes_url, class: "nav-link", :style=>'color: white;font-family: ubuntu;font-size: 100%;margin-left:20px'%>
+
   
-  <%= link_to "Salir", destroy_user_session_path, method: :delete ,class: "nav-link"%>
+  <%= link_to "Salir", destroy_user_session_path, method: :delete ,class: "nav-link" ,:style=>'color: white;font-family: ubuntu;font-size: 100%;margin-left:20px'%>
   
   <% else %>
-  <li class="nav-item active">
+
+
+  <li class="nav-item active" >
   <a class="nav-link" href="users/sign_in">Ingresar <span class="sr-only">(current)</span></a>
 </li>
 
-<li class="nav-item active">
+<li class="nav-item active" >
   <a class="nav-link" href="users/sign_up">Registrarse <span class="sr-only">(current)</span></a>
 </li>
 <% end %>
