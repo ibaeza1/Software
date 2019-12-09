@@ -4,7 +4,7 @@ class PlatosController < ApplicationController
   # GET /platos
   # GET /platos.json
   def index
-    @platos = Plato.all
+    @platos = Plato.all.order("created_at ASC")
   end
 
   # GET /platos/1
