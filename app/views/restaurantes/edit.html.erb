@@ -1,18 +1,18 @@
 <h1 style="color:white;font-family: ubuntu;font-size: 300%;">Editar Restaurante</h1>
 
 
-<%= form_with(model: @restaurante, url: restaurante_path(@restaurante)) do |form| %>
-  <div class="field" style="color:white;font-family: ubuntu;font-size: 200%;">
+<%= form_with(model: @restaurante, url: restaurante_path(@restaurantes)) do |form| %>
+  <div class="field" style="color:white;font-family: ubuntu;font-size: 130%;">
     <%= form.label :titulo %>
     <%= form.text_field :titulo %>
   </div>
 
-  <div class="field" style="color:white;font-family: ubuntu;font-size: 200%;">
+  <div class="field" style="color:white;font-family: ubuntu;font-size: 130%;">
     <%= form.label :url %>
     <%= form.text_field :url %>
   </div>
 
-  <div class="field" style="color:white;font-family: ubuntu;font-size: 200%;">
+  <div class="field" style="color:white;font-family: ubuntu;font-size: 130%;">
     <%= form.label :avatar%>
     <%= form.file_field :avatar%>
   </div>

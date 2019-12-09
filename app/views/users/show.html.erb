@@ -5,7 +5,7 @@
 
 
 <% if @user.image.attached? %>
-<img src="<%=(url_for(plato.imagen))%>">
+<img src="<%=(url_for(@user.image))%>">
 <% else %>
 <%= image_tag("no_image.jpg") %>
 <% end %>  
@@ -36,7 +36,7 @@ body { background-image: url('/assets/nacha.png') !important;
   <%=link_to "Mostrar Restaurantes", restaurantes_url, class: "nav-link", :style=>'color: white;font-family: ubuntu;font-size: 100%;margin-left:20px'%>
   </li>
   
-  <%= link_to "Salir", destroy_user_session_path, method: :delete ,class: "nav-link"%>
+  <%= link_to "Salir", destroy_user_session_path, method: :delete ,class: "nav-link" ,:style=>'color: white;font-family: ubuntu;font-size: 100%;margin-left:20px'%>
   
   <% else %>
   <li class="nav-item active">

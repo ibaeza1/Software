@@ -23,7 +23,7 @@ class RestaurantesController < ApplicationController
 
   # GET /restaurantes/1/edit
   def edit
-    @restaurantes = Restaurante.find(params[:id])
+    @restaurante = Restaurante.find(params[:id])
   end
 
   # POST /restaurantes
@@ -41,7 +41,6 @@ class RestaurantesController < ApplicationController
 
   def update
     puts('---------------------------')
-    puts(restaurante_params)
     respond_to do |format|
       if @restaurantes.update(restaurante_params)
         puts('======================================')
