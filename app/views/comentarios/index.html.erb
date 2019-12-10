@@ -22,27 +22,19 @@
         <td style="color:white;font-family: ubuntu;font-size: 150%;margin-top:20px"><%= comentario.fecha_y_hora %></td>
         <td style="color:white;font-family: ubuntu;font-size: 150%;margin-top:20px"><%= comentario.contenido %></td>
         <td style="color:white;font-family: ubuntu;font-size: 150%;margin-top:20px"><%= comentario.puntaje_de_reputacion %></td>
-        <td style="color:white;font-family: ubuntu;font-size: 150%;margin-top:20px"><%= link_to 'Show', comentario %></td>
-	<% if current_user.try(:admin?) %> 
-        	<td><%= link_to 'Edit', edit_comentario_path(comentario) %></td>
-        	<td><%= link_to 'Destroy', comentario, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-	<% end %>
+        <td ><%= link_to 'Ver comentario', comentario, :style=>'color: white;font-family: ubuntu;font-size: 100%;margin-left:20px'  %></td>
+
+        <% if current_user.try(:admin?) %> 
+        	<td><%= link_to 'Editar', edit_comentario_path(comentario) %></td>
+        	<td><%= link_to 'Eliminar Comentario', comentario, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      	<% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-<link rel="stylesheet" href="../../stylesheets/comentarios.scss">
-<%= link_to 'Nuevo Comentario', new_comentario_path,:style=>'color: white;font-family: ubuntu;font-size: 100%;margin-left:20px' %>
-<%= link_to 'Restaurantes', restaurantes_path ,:style=>'color: white;font-family: ubuntu;font-size: 100%;margin-left:20px'%>
-<tbody>
-    <% @comentarios.each do |comentario| %>
-      <td><%= link_to 'Destroy', comentario, method: :delete, data: { confirm: 'Estas seguro?' } %></td>
-      <% end %>
-    
-  
-</tbody>
+
 
 
 <style> 

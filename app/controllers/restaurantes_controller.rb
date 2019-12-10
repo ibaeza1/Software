@@ -7,7 +7,7 @@ class RestaurantesController < ApplicationController
   
   
   def index
-    @restaurantes = Restaurante.all
+    @restaurantes = Restaurante.all.order("created_at ASC")
   end
 
   # GET /restaurantes/1

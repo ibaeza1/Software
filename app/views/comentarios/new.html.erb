@@ -1,20 +1,9 @@
 <h1 style="color:white;font-family: ubuntu;font-size: 400%;">Nuevo Comentario</h1>
 
 <%= form_with(model: Comentario.new, local: true) do |form| %>
-    <% if comentario.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(ordene.errors.count, "error") %> prohibited this ordene from being saved:</h2>
-  
-        <ul>
-        <% comentario.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-        </ul>
-      </div>
-    <% end %>
-  
 
-    <div class="field"  style="color:white;font-family: ubuntu;font-size: 150%;">
+
+   <div class="field"  style="color:white;font-family: ubuntu;font-size: 150%;">
     <%= form.label :restaurante_o_plato %>
     <%= form.text_field :restaurante_o_plato %>
     </div>
@@ -22,11 +11,6 @@
     <div class="field" style="color:white;font-family: ubuntu;font-size: 150%;">
       <%= form.label :Usuario %>
       <%= form.text_field :usuario %>
-    </div>
-  
-    <div class="field" style="color:white;font-family: ubuntu;font-size: 150%;">
-    <%= form.label :usuario %>
-    <%= form.text_field :usuario %>
     </div>
   
     <div class="field" style="color:white;font-family: ubuntu;font-size: 150%;">

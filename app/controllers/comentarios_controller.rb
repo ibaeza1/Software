@@ -5,27 +5,24 @@ class ComentariosController < ApplicationController
   # GET /comentarios
   # GET /comentarios.json
   def index
-    @comentarios = Comentario.all
+    @comentarios = Comentario.all.order("created_at ASC")
   end
 
   # GET /comentarios/1
   # GET /comentarios/1.json
   def show
     @comentarios = Comentario.where(:id => params[:id])
-    if @comentarios.exists?
-      puts("HAY ORDEN")
-    else
-      puts("No hay ordenes")
-    end
+
   end
 
   # GET /comentarios/new
   def new
-    @comentario = Comentario.new
+    @comentarios = Comentario.new
   end
 
   # GET /comentarios/1/edit
   def edit
+    @comentario = Comentario.find(params[:id])
   end
 
   # POST /comentarios
@@ -35,8 +32,8 @@ class ComentariosController < ApplicationController
 
     respond_to do |format|
       if @comentario.save
-        format.html { redirect_to @comentario, notice: 'Comentario was successfully created.' }
-        format.json { render :show, status: :created, location: @comentario }
+        format.html { redirect_to restaurante_comentarios_path(@comentario), notice: 'Plato was successfully created.' }
+        format.json { render :show, status: :created, location: @restaurante }
       else
         format.html { render :new }
         format.json { render json: @comentario.errors, status: :unprocessable_entity }
@@ -48,9 +45,9 @@ class ComentariosController < ApplicationController
   # PATCH/PUT /comentarios/1.json
   def update
     respond_to do |format|
-      if @comentario.update(comentario_params)
-        format.html { redirect_to @comentario, notice: 'Comentario was successfully updated.' }
-        format.json { render :show, status: :ok, location: @comentario }
+      if @comentarios.update(comentario_params)
+        format.html {redirect_to :action=> "index", notice: 'Restaurante was successfully updated.'}
+        format.json { render :index, status: :ok, location: @comentario }
       else
         format.html { render :edit }
         format.json { render json: @comentario.errors, status: :unprocessable_entity }
@@ -71,11 +68,8 @@ class ComentariosController < ApplicationController
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_comentario
-  
-      @comentarios = Comentario.find(params[:id])
-
-
-end
+    @comentarios = Comentario.find(params[:id])
+  end
 
   def comentario_params
     params.fetch( :comentario, {})
@@ -86,6 +80,7 @@ end
 private
   # Never trust parameters from the scary internet, only allow the white list through.
   def comentario_params
-    params.require(:comentario).permit(:restaurante_o_plato, :usuario, :fecha_y_hora, :fecha_y_hora, :puntaje_de_reputacion)
+    params.require(:comentario).permit(:restaurante_o_plato, :usuario, :fecha_y_hora, :contenido, :puntaje_de_reputacion)
 
+  end
 end

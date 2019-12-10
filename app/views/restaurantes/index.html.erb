@@ -24,10 +24,10 @@
 </div>
   <% else %>
   <%= image_tag("no_image.jpg") %>
-
+  <%= link_to 'Ver Restaurante', restaurante_path(restaurante),:style=>'color: white;font-family: ubuntu;font-size: 100%;margin-left:20px' %>
   <% end %>
 
-<!--  <%= link_to 'Ver restaurante', restaurante_path(restaurante),:style=>'color: white;font-family: ubuntu;font-size: 100%;margin-left:20px' %>
+<!--  <%= link_to 'Ver restaurante', restaurante, method: :delete, data: { confirm: 'Estas seguro?' }%>
 -->
   <% n += 1 %>
 

@@ -26,12 +26,11 @@
         <td style="color:white;font-family: ubuntu;font-size: 150%;margin-top:20px"><%= plato.descripcion %></td>
         <td style="color:white;font-family: ubuntu;font-size: 150%;margin-top:20px"><%= plato.cantidad_de_personas_sugeridas %></td>
         <td style="color:white;font-family: ubuntu;font-size: 150%;margin-top:20px"><%= plato.valoracion %></td>
-        <td ><%= link_to 'Show', plato, :style=>'color: white;font-family: ubuntu;font-size: 100%;margin-left:20px'  %></td>
-        <td><%= link_to 'Destroy', plato, method: :delete, data: { confirm: 'Estas seguro?' }, :style=>'color: white;font-family: ubuntu;font-size: 100%;margin-left:20px'  %></td>
+        <td ><%= link_to 'Ver plato', plato, :style=>'color: white;font-family: ubuntu;font-size: 100%;margin-left:20px'  %></td>
 
         <% if current_user.try(:admin?) %>
-          <td><%= link_to 'Edit', edit_plato_path(plato) %></td>
-          <td><%= link_to 'Destroy', plato, method: :delete, data: { confirm: 'Estas seguro?' } %></td>
+          <td><%= link_to 'Editar', edit_plato_path(plato) %></td>
+          <td><%= link_to 'Eliminar plato', plato, method: :delete, data: { confirm: 'Estas seguro?' } %></td>
         <% end %>
       </tr>
     <% end %>
