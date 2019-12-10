@@ -14,6 +14,46 @@ body { background-image: url('/assets/nacha.png') !important;
 
 <h3 style="color:white;font-family: ubuntu;font-size: 400%;margin-top:20px"> <%= @restaurantes.titulo %> </h3>
 
+
+<div class="mt-10">
+<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+  <div class="btn-group mr-2" role="group" aria-label="First group">
+    <button type="button" style="background-color:red" class="btn btn-secondary"><%= link_to 'Ver Platos', platos_path ,:style=>'color: white;font-family: ubuntu;font-size: 100%' %>
+</button>
+    <button type="button" style="background-color:red" class="btn btn-secondary"><%= link_to 'Crear Plato', new_plato_path ,:style=>'color: white;font-family: ubuntu;font-size: 100%' %>
+</button>
+    <button type="button" style="background-color:red" class="btn btn-secondary"><%= link_to 'Ver Ordenes', ordene_path(@restaurantes) ,:style=>'color: white;font-family: ubuntu;font-size: 100%' %>
+</button>
+    <button type="button" style="background-color:red" class="btn btn-secondary"><%= link_to 'Ver Comentarios', comentario_path(@restaurantes) ,:style=>'color: white;font-family: ubuntu;font-size: 100%' %>
+</button>
+    <button type="button" style="background-color:red" class="btn btn-secondary"><%= link_to 'Crear Orden', new_ordene_path  ,:style=>'color: white;font-family: ubuntu;font-size: 100%'%>
+</button>
+    <button type="button" style="background-color:red" class="btn btn-secondary"><%= link_to 'Editar Restaurante', edit_restaurante_path  ,:style=>'color: white;font-family: ubuntu;font-size: 100%'%>
+</button>
+  </div>
+  <div class="btn-group" role="group" aria-label="Third group">
+    <button type="button" style="background-color:red" class="btn btn-secondary">  <%= link_to 'Back', restaurantes_path  ,:style=>'color: white;font-family: ubuntu;font-size: 100%'%>
+</button>
+  </div>
+</div>
+</div>
+<!--
+<%= link_to 'Ver Platos', platos_path ,:style=>'color: white;font-family: ubuntu;font-size: 100%' %>
+<b>
+<%= link_to 'Crear Plato', new_plato_path ,:style=>'color: white;font-family: ubuntu;font-size: 100%;margin-left:20px' %>
+<b>
+<%= link_to 'Ver Ordenes', ordene_path(@restaurantes) ,:style=>'color: white;font-family: ubuntu;font-size: 100%;margin-left:20px' %>
+<b>
+<%= link_to 'Ver Comentarios', comentario_path(@restaurantes) ,:style=>'color: white;font-family: ubuntu;font-size: 100%;margin-left:20px' %>
+<b>
+<%= link_to 'Crear Orden', new_ordene_path  ,:style=>'color: white;font-family: ubuntu;font-size: 100%;margin-left:20px'%>
+<b>
+<%= link_to 'Editar Restaurante', edit_restaurante_path  ,:style=>'color: white;font-family: ubuntu;font-size: 100%;margin-left:20px'%>
+<b>
+  <%= link_to 'Back', restaurantes_path  ,:style=>'color: white;font-family: ubuntu;font-size: 100%;margin-left:20px'%>
+<b>
+-->
+
 <div class="row">
   <div class="col-md-4">
 <% if @restaurantes.avatar.attached? %>
@@ -35,20 +75,6 @@ body { background-image: url('/assets/nacha.png') !important;
 
 
 
-<%= link_to 'Ver Platos', platos_path ,:style=>'color: white;font-family: ubuntu;font-size: 100%;margin-left:20px' %>
-<b>
-<%= link_to 'Crear Plato', new_plato_path ,:style=>'color: white;font-family: ubuntu;font-size: 100%;margin-left:20px' %>
-<b>
-<%= link_to 'Ver Ordenes', ordene_path(@restaurantes) ,:style=>'color: white;font-family: ubuntu;font-size: 100%;margin-left:20px' %>
-<b>
-<%= link_to 'Ver Comentarios', comentario_path(@restaurantes) ,:style=>'color: white;font-family: ubuntu;font-size: 100%;margin-left:20px' %>
-<b>
-<%= link_to 'Back', restaurantes_path  ,:style=>'color: white;font-family: ubuntu;font-size: 100%;margin-left:20px'%>
-<b>
-<%= link_to 'Crear Orden', new_ordene_path  ,:style=>'color: white;font-family: ubuntu;font-size: 100%;margin-left:20px'%>
-<b>
-<%= link_to 'Editar Restaurante', edit_restaurante_path  ,:style=>'color: white;font-family: ubuntu;font-size: 100%;margin-left:20px'%>
-<b>
 
 
 <main class="container" role="main">
