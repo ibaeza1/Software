@@ -41,24 +41,7 @@ body { background-image: url('/assets/nacha.png') !important;
   </div>
 </div>
 </div>
-<!--
-<%= link_to 'Ver Platos', platos_path ,:style=>'color: white;font-family: ubuntu;font-size: 100%' %>
-<b>
-<%= link_to 'Crear Plato', new_plato_path ,:style=>'color: white;font-family: ubuntu;font-size: 100%;margin-left:20px' %>
-<b>
-<%= link_to 'Ver Ordenes', ordene_path(@restaurantes) ,:style=>'color: white;font-family: ubuntu;font-size: 100%;margin-left:20px' %>
-<b>
-<%= link_to 'Ver Comentarios', comentario_path(@restaurantes) ,:style=>'color: white;font-family: ubuntu;font-size: 100%;margin-left:20px' %>
-<b>
-<%= link_to 'Crear Orden', new_ordene_path  ,:style=>'color: white;font-family: ubuntu;font-size: 100%;margin-left:20px'%>
-<b>
-<%= link_to 'Editar Restaurante', edit_restaurante_path  ,:style=>'color: white;font-family: ubuntu;font-size: 100%;margin-left:20px'%>
-<b>
-  <%= link_to 'Back', restaurantes_path  ,:style=>'color: white;font-family: ubuntu;font-size: 100%;margin-left:20px'%>
-<b>
--->
-
-<div class="row">
+<div class="row p-4">
   <div class="col-md-4">
 <% if @restaurantes.avatar.attached? %>
     <img src="<%=(url_for(@restaurantes.avatar))%>" class="resto-show">

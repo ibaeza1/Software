@@ -1,5 +1,5 @@
 class OrdenesController < ApplicationController
-  
+
   before_action :authenticate_user!, :except => [:show, :index]
 
   # GET /ordenes
@@ -34,7 +34,9 @@ class OrdenesController < ApplicationController
     @ordene = Ordene.new(ordene_params)
 
     respond_to do |format|
-      if @ordene.aceptar
+
+    #  if @ordene.aceptar
+
         if @ordene.save
           format.html { redirect_to @ordene, notice: 'Ordene was successfully created.' }
 	  format.json { render :show, status: :created, location: @ordene }
@@ -43,7 +45,7 @@ class OrdenesController < ApplicationController
           format.json { render json: @ordene.errors, status: :unprocessable_entity }
 	      end
       end
-    end
+    #end
   end
 
   # PATCH/PUT /ordenes/1

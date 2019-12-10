@@ -3,32 +3,18 @@
 <%= form_with(model: Ordene.new, local: true) do |form| %>
 
 <div class="field" style="color:white;font-family: ubuntu;font-size: 150%;">
-<%= form.label :nombre %>
-<%= form.text_field :nombre %>
+<%= form.label :pedido %>
+<%= form.text_field :pedido %>
 </div>
 
 <div class="field" style="color:white;font-family: ubuntu;font-size: 150%;">
-<%= form.label :precio %>
-<%= form.text_field :precio %>
+<%= form.label :precio_total %>
+<%= form.text_field :precio_total %>
 </div>
 
 <div class="field" style="color:white;font-family: ubuntu;font-size: 150%;">
-<%= form.label :descripcion %>
-<%= form.text_area :descripcion %>
-</div>
-
-<div class="field" style="color:white;font-family: ubuntu;font-size: 150%;">
-<%= form.label :cantidad_de_personas_sugeridas %>
-<%= form.number_field :cantidad_de_personas_sugeridas %>
-</div>
-
-<div class="field" style="color:white;font-family: ubuntu;font-size: 150%;">
-<%= form.label :valoracion %>
-<%= form.number_field :valoracion %>
-</div>
-<div class="field" style="color:white;font-family: ubuntu;font-size: 150%;">
-<%= form.label :imagen%>
-<%= form.file_field :imagen%>
+<%= form.label :detalles %>
+<%= form.text_area :detalles %>
 </div>
 
 <div class="actions">
@@ -36,12 +22,12 @@
 </div>
 <% end %>
 
-<style> 
+<style>
 body { background-image: url('/assets/nacha.png') !important;
     background-position: collapse !important;
     background-repeat: no-repeat !important;
     background-size: cover !important; } /* Adding !important forces the browser to overwrite the default style applied by Bootstrap */
-</style> 
+</style>
 
 <main class="container" role="main">
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
@@ -57,9 +43,9 @@ body { background-image: url('/assets/nacha.png') !important;
 
   <%=link_to "Mostrar Restaurantes", restaurantes_url, class: "nav-link", :style=>'color: white;font-family: ubuntu;font-size: 100%;margin-left:20px'%>
 
-  
+
   <%= link_to "Salir", destroy_user_session_path, method: :delete ,class: "nav-link" ,:style=>'color: white;font-family: ubuntu;font-size: 100%;margin-left:20px'%>
-  
+
   <% else %>
   <li class="nav-item active">
   <a class="nav-link" href="users/sign_in">Ingresar <span class="sr-only">(current)</span></a>
@@ -86,8 +72,3 @@ body { background-image: url('/assets/nacha.png') !important;
      <font color="white">Desarrollado por Trejos Dream Team</font>
   </div>
   </footer>
-
-
-
-
-

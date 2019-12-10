@@ -6,6 +6,19 @@
     <%= form.label :titulo %>
     <%= form.text_field :titulo %>
   </div>
+  <div class="field" style="color:white;font-family: ubuntu;font-size: 130%;">
+    <%= form.label :direccion %>
+    <%= form.text_field :direccion %>
+  </div>
+  <div class="field" style="color:white;font-family: ubuntu;font-size: 130%;">
+    <%= form.label :telefono %>
+    <%= form.text_field :telefono %>
+  </div>
+  <div class="field" style="color:white;font-family: ubuntu;font-size: 130%;">
+    <%= form.label :correo %>
+    <%= form.text_field :correo %>
+  </div>
+
 
   <div class="field" style="color:white;font-family: ubuntu;font-size: 130%;">
     <%= form.label :url %>
@@ -22,12 +35,12 @@
   </div>
 <% end %>
 
-<style> 
+<style>
 body { background-image: url('/assets/nacha.png') !important;
     background-position: collapse !important;
     background-repeat: no-repeat !important;
     background-size: cover !important; } /* Adding !important forces the browser to overwrite the default style applied by Bootstrap */
-</style> 
+</style>
 
 <main class="container" role="main">
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
@@ -43,7 +56,7 @@ body { background-image: url('/assets/nacha.png') !important;
 
   <%=link_to "Mostrar Restaurantes", restaurantes_url, class: "nav-link", :style=>'color: white;font-family: ubuntu;font-size: 100%;margin-left:20px'%>
 
-  
+
   <%= link_to "Salir", destroy_user_session_path, method: :delete ,class: "nav-link" ,:style=>'color: white;font-family: ubuntu;font-size: 100%;margin-left:20px'%>
   <% else %>
   <li class="nav-item active">
@@ -71,6 +84,3 @@ body { background-image: url('/assets/nacha.png') !important;
      <font color="white">Desarrollado por Trejos Dream Team</font>
   </div>
   </footer>
-
-
-
