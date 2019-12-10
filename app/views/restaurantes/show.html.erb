@@ -1,10 +1,10 @@
 
-<style> 
+<style>
 body { background-image: url('/assets/nacha.png') !important;
     background-position: collapse !important;
     background-repeat: no-repeat !important;
     background-size: cover !important; } /* Adding !important forces the browser to overwrite the default style applied by Bootstrap */
-</style> 
+</style>
 
 
 
@@ -12,19 +12,26 @@ body { background-image: url('/assets/nacha.png') !important;
 
 <p id="notice"><%= notice %></p>
 
+<h3 style="color:white;font-family: ubuntu;font-size: 400%;margin-top:20px"> <%= @restaurantes.titulo %> </h3>
 
-<h3 style="color:white;font-family: ubuntu;font-size: 400%;margin-top:20px"> Informacion </h3>
+<div class="row">
+  <div class="col-md-4">
+<% if @restaurantes.avatar.attached? %>
+    <img src="<%=(url_for(@restaurantes.avatar))%>" class="resto-show">
+<% else %>
+  <%= image_tag("no_image.jpg") %>
+<% end %>
+</div>
+
+<div class="col-md-8">
 <p style="color:white;font-family: ubuntu;font-size: 150%;margin-top:20px">Nombre: <%= @restaurantes.titulo %></p>
 <p style="color:white;font-family: ubuntu;font-size: 150%;margin-top:20px">Direccion: <%= @restaurantes.direccion %></p>
 <p style="color:white;font-family: ubuntu;font-size: 150%;margin-top:20px">Telefono: <%= @restaurantes.telefono %></p>
 <p style="color:white;font-family: ubuntu;font-size: 150%;margin-top:20px">Valoracion: <%= @restaurantes.valoracion %></p>
 <p style="color:white;font-family: ubuntu;font-size: 150%;margin-top:20px">Correo: <%= @restaurantes.correo %></p>
 <p style="color:white;font-family: ubuntu;font-size: 150%;margin-top:20px">Url: <%= @restaurantes.url %></p>
-<% if @restaurantes.avatar.attached? %>
-    <img src="<%=(url_for(@restaurantes.avatar))%>">
-<% else %>
-  <%= image_tag("no_image.jpg") %>
-<% end %>
+</div>
+</div>
 
 
 
@@ -58,9 +65,9 @@ body { background-image: url('/assets/nacha.png') !important;
 
   <%=link_to "Mostrar Restaurantes", restaurantes_url, class: "nav-link", :style=>'color: white;font-family: ubuntu;font-size: 100%;margin-left:20px'%>
 
-  
+
   <%= link_to "Salir", destroy_user_session_path, method: :delete ,class: "nav-link" ,:style=>'color: white;font-family: ubuntu;font-size: 100%;margin-left:20px'%>
-  
+
   <% else %>
   <li class="nav-item active">
   <a class="nav-link" href="users/sign_in">Ingresar <span class="sr-only">(current)</span></a>
